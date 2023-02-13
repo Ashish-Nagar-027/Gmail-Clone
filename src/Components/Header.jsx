@@ -68,7 +68,7 @@ const Header = () => {
                <IconButton sx={{position:'absolute', right:'10px', zIndex:'2'}} className='filter-mail-icon' >
                   <TuneIcon />
                </IconButton>
-               <SearchInput fullWidth id="fullWidth"  />
+               <SearchInput fullWidth  />
          </NavbarCenter>
 
          <Box sx={{ display:'flex', flexGrow:1, justifyContent:'flex-end',}} className='header-right' >
