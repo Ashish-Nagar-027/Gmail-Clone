@@ -13,12 +13,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 const NavbarDiv = styled(Box)({
    display: 'flex',
    alignItems: 'center',
-   padding:'6px',
+   padding:'8px',
    background:'#F6F8FC',
    gap:'1rem'
 })
 
-const NavPart = styled('Box')({
+const NavPart = styled(Box)({
    display: 'flex',
    gap:'8px', 
    flexGrow: 1, 
@@ -28,9 +28,9 @@ const NavPart = styled('Box')({
 
 const NavbarCenter = styled(Box)({
    display: 'flex',
-   alignItems: 'center',
+   justifyContent: 'flex-start',
    backgroundColor:'#EAF1FB', 
-   width:"30%",
+   width:"35%",
    borderRadius:'10px', 
    flexGrow: 2, 
    position:'relative'
@@ -68,7 +68,7 @@ const Header = () => {
                <IconButton sx={{position:'absolute', right:'10px', zIndex:'2'}} className='filter-mail-icon' >
                   <TuneIcon />
                </IconButton>
-               <SearchInput fullWidth  />
+               <SearchInput fullWidth placeholder='Search mail'  />
          </NavbarCenter>
 
          <Box sx={{ display:'flex', flexGrow:1, justifyContent:'flex-end',}} className='header-right' >
