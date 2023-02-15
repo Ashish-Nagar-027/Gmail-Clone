@@ -18,6 +18,7 @@ const IconDiv = styled(Icon)({
     display:'flex',
     cursor:'pointer',
     gap:'10px',
+    fontSize:'1.3rem',
     padding:'5px 10px 5px 25px',
     '&:hover': {
         backgroundColor: '#EAEBEF',
@@ -29,18 +30,18 @@ const SideBarIcon = ({IconType, IconName, InsideNumber }) => {
   return (
     <SidebarItems >
         <IconDiv className='ShowNow'>
-        { <IconType /> }
+        { <IconType sx={{color:'#818181'}} /> }
         <Box sx={{
             display:'flex',
             justifyContent:'space-between',
             transition: 'all 0.2s ease-in-out',
             width:'160px'
         }}>
-        <Typography variant="p" fontStyle={500} fontSize={15} >
+        <Typography variant="p" fontStyle={400} fontSize={14} >
           {IconName}
         </Typography>
                 
-        <Typography variant="p" fontStyle={500} fontSize={15} >
+        <Typography variant="p" fontStyle={400} fontSize={14} >
           {InsideNumber}
         </Typography>
         </Box>

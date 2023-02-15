@@ -14,21 +14,21 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const TopBarTools = () => {
   return (
-    <Box sx={{display:'flex', alignItems:'center', justifyContent:'space-between', padding:'10px',fontSize:'18px', width:'calc(100vw - 250px)'}}>
+    <Box sx={{  display:'flex', alignItems:'center', justifyContent:'space-between', width:'calc(100vw - 300px)'}}>
        <Stack direction={'row'}>
-        <IconButton>
+        <IconButton sx={{transform:'scale(0.8)'}}>
           <CheckBoxOutlineBlankIcon />
         </IconButton>
 
-        <IconButton>
+        <IconButton sx={{transform:'scale(0.8)'}}>
           <ArrowDropDownIcon />
         </IconButton>
 
-        <IconButton>
+        <IconButton sx={{transform:'scale(0.8)'}}>
           <RefreshIcon />
         </IconButton>
 
-        <IconButton>
+        <IconButton sx={{transform:'scale(0.8)'}}>
           <MoreVertIcon />
         </IconButton>
       </Stack>

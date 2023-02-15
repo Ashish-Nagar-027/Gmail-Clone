@@ -19,7 +19,7 @@ const SidebarBox = styled(Box)({
     backgroundColor: '#F6F8FC',
     height: '100vh',
     width: '80px',
-    color:'#818181',
+    fontWeight:'400',
     width: '250px',
     "& .ShowNow": {
         width: 'fit-content',

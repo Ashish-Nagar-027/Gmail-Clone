@@ -15,7 +15,7 @@ function App() {
 
         <Sidebar />
 
-        <Stack direction={'column'}>
+        <Stack direction={'column'} sx={{}}>
            <TopBarTools />
            <SectionBar />
            <AllEmailList />
