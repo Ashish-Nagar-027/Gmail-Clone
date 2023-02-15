@@ -1,9 +1,15 @@
 import { Box } from '@mui/material'
 import React from 'react'
+import MailBody from './MailBody'
 
 const AllEmailList = () => {
   return (
-    <Box>AllEmailList</Box>
+    <Box sx={{ }}>
+      <MailBody />
+      <MailBody />
+      <MailBody />
+      <MailBody />
+    </Box>
   )
 }
 

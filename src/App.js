@@ -11,9 +11,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Stack direction={'row'}>
+      <Stack direction={'row'} sx={{
+        fontFamily: 'Open Sans, sans-serif'
+}}>
 
-        <Sidebar />
+        <Sidebar  />
 
         <Stack direction={'column'} sx={{}}>
            <TopBarTools />

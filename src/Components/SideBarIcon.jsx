@@ -30,7 +30,7 @@ const SideBarIcon = ({IconType, IconName, InsideNumber }) => {
   return (
     <SidebarItems >
         <IconDiv className='ShowNow'>
-        { <IconType sx={{color:'#818181'}} /> }
+        { <IconType sx={{color:'#444746', transform:'scale(0.8)'}} /> }
         <Box sx={{
             display:'flex',
             justifyContent:'space-between',
