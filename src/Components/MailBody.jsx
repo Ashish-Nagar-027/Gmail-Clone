@@ -4,7 +4,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 
-const MailBody = () => {
+const MailBody = ({sender, subject, msg}) => {
   return (
    <Box sx={{
     cursor:'pointer',
@@ -32,16 +32,16 @@ const MailBody = () => {
         <IconButton sx={{transform:'scale(0.8)'}}>
           <StarBorderOutlinedIcon />
         </IconButton>
-        <Typography color='#444746' component='p' fontSize={14} fontWeight={600}>
-            LinkedIn
+        <Typography color='#444746' component={'span'} fontSize={14} fontWeight={600}>
+            {sender}
         </Typography>
     </Box>
 
          <Box sx={{display:'flex', alignItems:'center',justifyContent:'flex-end', overflow:'hidden'}}>
-         <Typography color='#444746' component='p'  fontSize={14} fontWeight={600} sx={{display:'flex', alignItems:'center'}}>
-            30+ new jobs for frontend developer 
+         <Typography color='#444746' component={'span'} fontSize={14} fontWeight={600} sx={{display:'flex', alignItems:'center'}}>
+            {subject}
             <Typography fontSize={13}>
-                   -- SoftWare Engineering -Front end  Developer and other roles...
+                   -- {msg}...
             </Typography>
         </Typography>
          </Box>

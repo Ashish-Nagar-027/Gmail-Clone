@@ -52,13 +52,14 @@ const ComposeIcon = styled(Icon)({
 
 })
 
-const Sidebar = () => {
+const Sidebar = ({setShowCompose,setHalfShowCompose}) => {
     return (
         <SidebarBox>
             <ComposeIcon
                 className='ShowNow'
                 variant="contained"
                 bgcolor='#C2E7FF'
+                onClick={() =>setHalfShowCompose(true)}
                  >
 
                 <CreateOutlinedIcon />
