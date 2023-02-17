@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   Input,
   InputAdornment,
@@ -155,6 +156,7 @@ const HalfScreenComposeModal = ({
             }}
           ></textarea>
         </FormControllsElement>
+        <Button variant="contained" sx={{borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
       </Box>
     </Box>
   );
