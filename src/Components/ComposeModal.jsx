@@ -12,11 +12,38 @@ import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
 
+
+
 const FormControllsElement = styled(FormControl)({
   width: "90%",
   border: "none",
   padding: "5px",
 });
+
+
+const style = {
+  styleForIcons :  {
+      transform: "scale(0.7)",
+      cursor: "pointer",
+
+      "&:hover": {
+        backgroundColor: "rgba(68,71,70,0.078)",
+        opacity: "1",
+      },
+    },
+
+    inputs: {
+        padding: "5px 15px",
+        border: "none",
+        boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
+        "&::before": { border: "none", "&:hover": { border: "none" } },
+        "&::after": { border: "none", "&:hover": { border: "none" } },
+        "&:hover": { border: "none" },
+        width:'100%',
+        outline:'none'
+      }
+}
+
 
 const ComposeModal = ({
   setShowCompose,
@@ -25,7 +52,7 @@ const ComposeModal = ({
   setIsFocused,
   setHalfShowCompose,
 }) => {
-  //   const [isFocused, setIsFocused] = useState(false)
+  
 
   return (
     <Modal
@@ -69,46 +96,25 @@ const ComposeModal = ({
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <MinimizeIcon
-              sx={{
-                transform: "scale(0.7)",
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "rgba(68,71,70,0.078)",
-                  opacity: "1",
-                },
-              }}
+               sx={style.styleForIcons}
             />
             <CloseFullscreenIcon
               onClick={(e) => {
                 setHalfShowCompose(true);
                 setShowCompose(false);
               }}
-              sx={{
-                transform: "scale(0.7)",
-                cursor: "pointer",
-
-                "&:hover": {
-                  backgroundColor: "rgba(68,71,70,0.078)",
-                  opacity: "1",
-                },
-              }}
+              sx={style.styleForIcons}
             />
             <CloseIcon
               onClick={(e) => setShowCompose(false)}
-              sx={{
-                transform: "scale(0.7)",
-                cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "rgba(68,71,70,0.078)",
-                  opacity: "1",
-                },
-              }}
+              sx={style.styleForIcons}
             />
           </Box>
         </Box>
 
-        <FormControllsElement m={1} variant="standard">
+       <form sx={{display:'flex', flexDirection:'column'}}>
           <Input
+           m={1} variant="standard"
             id="standard-adornment-amount"
             startAdornment={
               <InputAdornment position="start">
@@ -122,30 +128,16 @@ const ComposeModal = ({
             }
             onFocus={(e) => setIsFocused(true)}
             onBlur={(e) => setIsFocused(false)}
-            sx={{
-              padding: "5px",
-              border: "none",
-              boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
-              "&::before": { border: "none", "&:hover": { border: "none" } },
-              "&::after": { border: "none", "&:hover": { border: "none" } },
-              "&:hover": { border: "none" },
-            }}
+            sx={style.inputs}
           />
-        </FormControllsElement>
-
-        <FormControllsElement m={1} variant="standard">
+     
           <Input
+           m={1} variant="standard"
             placeholder="subject"
-            sx={{
-              padding: "5px",
-              border: "none",
-              boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
-              "&::before": { border: "none", "&:hover": { border: "none" } },
-              "&::after": { border: "none", "&:hover": { border: "none" } },
-              "&:hover": { border: "none" },
-            }}
+            sx={style.inputs}
+            border="none"
           />
-        </FormControllsElement>
+
         <FormControllsElement m={1} variant="standard">
           <textarea
             style={{
@@ -155,10 +147,12 @@ const ComposeModal = ({
               margin: "10px auto",
               backgroundColor: "whitesmoke",
               minHeight: "300px",
+             
             }}
           ></textarea>
         </FormControllsElement>
-        <Button variant="contained" sx={{borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
+        <Button variant="contained" sx={{ display:'block',borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
+      </form>
       </Box>
     </Modal>
   );
