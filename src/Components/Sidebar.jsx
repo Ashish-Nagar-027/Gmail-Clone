@@ -18,7 +18,6 @@ const SidebarBox = styled(Box)({
     flexDirection:'column',
     backgroundColor: '#F6F8FC',
     height: '100vh',
-    width: '80px',
     fontWeight:'400',
     width: '250px',
     color:'#444746',

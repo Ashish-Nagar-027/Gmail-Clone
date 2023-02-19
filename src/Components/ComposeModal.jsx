@@ -1,24 +1,21 @@
 import {
   Box,
   Button,
-  FormControl,
   Input,
   InputAdornment,
   Modal,
-  Typography,
+  TextField,
+  Typography, 
 } from "@mui/material";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
-import styled from "@emotion/styled";
+import { useState } from "react";
+// Add a second document with a generated ID.
+import { addDoc, collection,serverTimestamp   } from "firebase/firestore"; 
 
+import { db } from "../Firebase";
 
-
-const FormControllsElement = styled(FormControl)({
-  width: "90%",
-  border: "none",
-  padding: "5px",
-});
 
 
 const style = {
@@ -50,10 +47,35 @@ const ComposeModal = ({
   ShowCompose,
   isFocused,
   setIsFocused,
-  setHalfShowCompose,
-}) => {
+  setHalfShowCompose, }) => {
   
 
+    const [formRecipents, setformRecipents ]  = useState("")
+    const [formSubject, setformSubject ]  = useState("")
+    const [formMsg, setformMsg ]  = useState("")
+
+ const formSubmittedFucntion = async (e) => {
+                  e.preventDefault()
+
+                  setShowCompose(false)
+                  try {
+                    const docRef = await addDoc(collection(db, "data"), {
+                      Recipents: formRecipents,
+                      Subject: formSubject,
+                      Message: formMsg,
+                      timestamp: serverTimestamp()
+                    });
+                    
+                    setformMsg("")
+                    setformRecipents("")
+                    setformSubject("")
+                   
+                    alert('Email sent successfully')
+                    
+                  } catch (e) {
+                    console.error("Error adding document: ", e);
+                  }
+ }
   return (
     <Modal
       open={ShowCompose}
@@ -112,10 +134,17 @@ const ComposeModal = ({
           </Box>
         </Box>
 
-       <form sx={{display:'flex', flexDirection:'column'}}>
+       <form 
+       onSubmit={(e) =>formSubmittedFucntion(e)}
+       sx={{display:'flex', flexDirection:'column'}} 
+       >
           <Input
-           m={1} variant="standard"
-            id="standard-adornment-amount"
+          m={1} variant="standard"
+            onFocus={(e) => setIsFocused(true)}
+            onBlur={(e) => setIsFocused(false)}
+            onChange={(e) => setformRecipents(e.target.value)}
+            value={formRecipents}
+            sx={style.inputs}
             startAdornment={
               <InputAdornment position="start">
                 {isFocused ? "To" : "Recipients"}
@@ -126,9 +155,6 @@ const ComposeModal = ({
                 {isFocused && "CC Bcc"}
               </InputAdornment>
             }
-            onFocus={(e) => setIsFocused(true)}
-            onBlur={(e) => setIsFocused(false)}
-            sx={style.inputs}
           />
      
           <Input
@@ -136,22 +162,27 @@ const ComposeModal = ({
             placeholder="subject"
             sx={style.inputs}
             border="none"
+            onChange={(e) => setformSubject(e.target.value)}
+            value={formSubject}
+            
           />
 
-        <FormControllsElement m={1} variant="standard">
           <textarea
+           onChange={(e) => setformMsg(e.target.value)}
+           value={formMsg}
             style={{
               border: "none",
               outline: "none",
-              width: "100%",
+              maxWidth: "100%",
+              minWidth:"90%",
               margin: "10px auto",
               backgroundColor: "whitesmoke",
-              minHeight: "300px",
-             
+              minHeight:'300px',
+              padding: "5px 15px",
+              
             }}
           ></textarea>
-        </FormControllsElement>
-        <Button variant="contained" sx={{ display:'block',borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
+        <Button onClick={(e) => formSubmittedFucntion(e)} variant="contained" sx={{borderRadius:'20px', marginTop:'100px', marginLeft:'10px', display:'block'}}>Send</Button>
       </form>
       </Box>
     </Modal>
