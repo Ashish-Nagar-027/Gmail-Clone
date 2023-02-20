@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  FormControl,
+
   Input,
   InputAdornment,
   Typography,
@@ -10,13 +10,8 @@ import {
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-import styled from "@emotion/styled";
 
-const FormControllsElement = styled(FormControl)({
-  width: "90%",
-  border: "none",
-  padding: "5px",
-});
+
 
 const HalfScreenComposeModal = ({
   setHalfShowCompose,
@@ -24,6 +19,13 @@ const HalfScreenComposeModal = ({
   isFocused,
   setIsFocused,
   ShowHalfCompose,
+  formRecipents ,
+  setformRecipents,
+  formSubject ,
+  setformSubject,
+  formMsg,
+  setformMsg ,
+  formSubmittedFucntion
 }) => {
   return (
     <Box
@@ -56,6 +58,7 @@ const HalfScreenComposeModal = ({
             padding: "8px 16px",
             backgroundColor: "#EAF1FB",
             borderRadius: "10px 10px 0px 0px",
+           
           }}
         >
           <Typography
@@ -107,7 +110,7 @@ const HalfScreenComposeModal = ({
           </Box>
         </Box>
 
-        <FormControllsElement m={1} variant="standard">
+        <form onSubmit={(e) =>formSubmittedFucntion(e)}>
           <Input
             id="standard-adornment-amount"
             startAdornment={
@@ -122,41 +125,50 @@ const HalfScreenComposeModal = ({
             }
             onFocus={(e) => setIsFocused(true)}
             onBlur={(e) => setIsFocused(false)}
+            onChange={(e) => setformRecipents(e.target.value)}
+            value={formRecipents}
             sx={{
-              padding: "5px",
               border: "none",
               boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
               "&::before": { border: "none", "&:hover": { border: "none" } },
               "&::after": { border: "none", "&:hover": { border: "none" } },
               "&:hover": { border: "none" },
+              width:'100%',
+              padding:'10px'
             }}
           />
-        </FormControllsElement>
-        <FormControllsElement m={1} variant="standard">
+        
           <Input
             placeholder="subject"
+            onChange={(e) => setformSubject(e.target.value)}
+            value={formSubject}
             sx={{
-              padding: "5px",
+              padding: "5px 10px",
               border: "none",
               boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
               "&::before": { border: "none", "&:hover": { border: "none" } },
               "&::after": { border: "none", "&:hover": { border: "none" } },
               "&:hover": { border: "none" },
+              width:'100%'
             }}
           />
-        </FormControllsElement>
-        <FormControllsElement m={1} variant="standard">
+        
           <textarea
+           onChange={(e) => setformMsg(e.target.value)}
+           value={formMsg}
             style={{
               border: "none",
               outline: "none",
               width: "100%",
               margin: "10px auto",
               minHeight: "300px",
+              width:'100%',
+              padding: '5px 10px '
             }}
           ></textarea>
-        </FormControllsElement>
-        <Button variant="contained" sx={{borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
+        
+        <Button onClick={(e) => formSubmittedFucntion(e)} variant="contained" sx={{borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
+        </form>
       </Box>
     </Box>
   );

@@ -9,7 +9,7 @@ const MailBody = ({sender, subject, msg}) => {
    <Box sx={{
     cursor:'pointer',
     display: 'grid',
-    gridTemplateColumns:'200px auto 150px',
+    gridTemplateColumns:'300px auto 150px',
     boxShadow: 'inset 0 -1px 0 0 rgb(100 121 143 / 12%)',
     overflow:'hidden',
     '&:hover':{
@@ -37,8 +37,8 @@ const MailBody = ({sender, subject, msg}) => {
         </Typography>
     </Box>
 
-         <Box sx={{display:'flex', alignItems:'center',justifyContent:'flex-end', overflow:'hidden'}}>
-         <Typography color='#444746' component={'span'} fontSize={14} fontWeight={600} sx={{display:'flex', alignItems:'center'}}>
+         <Box sx={{display:'flex', alignItems:'center', overflow:'hidden'}}>
+         <Typography color='#444746' component={'span'} fontSize={14} fontWeight={600} sx={{display:'flex', alignItems:'center',paddingRight:'10px'}}>
             {subject}
             <Typography fontSize={13}>
                    -- {msg}...

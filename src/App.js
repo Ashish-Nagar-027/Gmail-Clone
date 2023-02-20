@@ -9,12 +9,45 @@ import Sidebar from "./Components/Sidebar";
 import TopBarTools from "./Components/TopBarTools";
 import { useState } from "react";
 import HalfScreenComposeModal from "./Components/HalfScreenComposeModal";
+import { addDoc, collection,serverTimestamp   } from "firebase/firestore"; 
+
+import { db } from "./Firebase";
 
 function App() {
   
   const [isFocused, setIsFocused] = useState(false);
   const [ShowCompose, setShowCompose] = useState(false);
   const [ShowHalfCompose, setHalfShowCompose] = useState(false);
+   
+  const [formRecipents, setformRecipents ]  = useState("")
+  const [formSubject, setformSubject ]  = useState("")
+  const [formMsg, setformMsg ]  = useState("")
+
+
+  const formSubmittedFucntion = async (e) => {
+    e.preventDefault()
+
+    setShowCompose(false)
+    setHalfShowCompose(false)
+    try {
+      const docRef = await addDoc(collection(db, "data"), {
+        Recipents: formRecipents,
+        Subject: formSubject,
+        Message: formMsg,
+        timestamp: serverTimestamp()
+      });
+      
+      setformMsg("")
+      setformRecipents("")
+      setformSubject("")
+     
+      alert('Email sent successfully')
+      
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+}
+
 
   return (
     <div className="App">
@@ -43,6 +76,13 @@ function App() {
         ShowHalfCompose={ShowHalfCompose}
         setHalfShowCompose={setHalfShowCompose}
         ShowCompose={ShowCompose}
+        formRecipents = { formRecipents }
+        setformRecipents  = { setformRecipents }
+        formSubject  = { formSubject }
+        setformSubject = { setformSubject }
+        formMsg = { formMsg }
+        setformMsg  = { setformMsg }
+        formSubmittedFucntion={formSubmittedFucntion}
       />
       <HalfScreenComposeModal
         isFocused={isFocused}
@@ -51,6 +91,13 @@ function App() {
         ShowCompose={ShowCompose}
         ShowHalfCompose={ShowHalfCompose}
         setHalfShowCompose={setHalfShowCompose}
+        formRecipents = { formRecipents }
+        setformRecipents  = { setformRecipents }
+        formSubject  = { formSubject }
+        setformSubject = { setformSubject }
+        formMsg = { formMsg }
+        setformMsg  = { setformMsg }
+        formSubmittedFucntion={formSubmittedFucntion}
       />
     </div>
   );

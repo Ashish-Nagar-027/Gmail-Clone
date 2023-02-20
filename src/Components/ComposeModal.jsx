@@ -4,17 +4,14 @@ import {
   Input,
   InputAdornment,
   Modal,
-  TextField,
   Typography, 
 } from "@mui/material";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
-// Add a second document with a generated ID.
-import { addDoc, collection,serverTimestamp   } from "firebase/firestore"; 
 
-import { db } from "../Firebase";
+// Add a second document with a generated ID.
+
 
 
 
@@ -47,35 +44,21 @@ const ComposeModal = ({
   ShowCompose,
   isFocused,
   setIsFocused,
-  setHalfShowCompose, }) => {
+  setHalfShowCompose,
+  formRecipents ,
+  setformRecipents,
+  formSubject ,
+  setformSubject,
+  formMsg,
+  setformMsg ,
+  formSubmittedFucntion
+ }) => {
   
 
-    const [formRecipents, setformRecipents ]  = useState("")
-    const [formSubject, setformSubject ]  = useState("")
-    const [formMsg, setformMsg ]  = useState("")
+   
 
- const formSubmittedFucntion = async (e) => {
-                  e.preventDefault()
+ 
 
-                  setShowCompose(false)
-                  try {
-                    const docRef = await addDoc(collection(db, "data"), {
-                      Recipents: formRecipents,
-                      Subject: formSubject,
-                      Message: formMsg,
-                      timestamp: serverTimestamp()
-                    });
-                    
-                    setformMsg("")
-                    setformRecipents("")
-                    setformSubject("")
-                   
-                    alert('Email sent successfully')
-                    
-                  } catch (e) {
-                    console.error("Error adding document: ", e);
-                  }
- }
   return (
     <Modal
       open={ShowCompose}
