@@ -4,7 +4,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 
-const MailBody = ({sender, subject, msg}) => {
+const MailBody = ({sender, subject, msg, date}) => {
   return (
    <Box sx={{
     cursor:'pointer',
@@ -15,7 +15,6 @@ const MailBody = ({sender, subject, msg}) => {
     '&:hover':{
         boxShadow: '0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%)',
          }
-
    }}>
 
     <Box sx={{
@@ -48,7 +47,7 @@ const MailBody = ({sender, subject, msg}) => {
          
          <Box sx={{display:'flex', alignItems:'center',justifyContent:'center'}}>
          <Typography fontSize={12}>
-                Feb 14
+                {date}
             </Typography>
          </Box>
     </Box>

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React, { useState } from "react";
 import MailBody from "./MailBody";
 
-import { collection,  onSnapshot,query } from "firebase/firestore"; 
+import { collection,  onSnapshot,orderBy,query } from "firebase/firestore"; 
 import { useEffect } from "react";
 import { db } from "../Firebase";
 
@@ -15,8 +15,8 @@ const AllEmailList = () => {
   const [Mails, setMails] = useState([])
 
   useEffect(() =>{
-   
-      const q = query(collection(db,'data'));
+    
+      const q = query(collection(db,'data'), orderBy('timestamp', 'desc'));
       const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         setFetching(true)
        await setMails(querySnapshot.docs.map((doc) => ({
@@ -24,35 +24,27 @@ const AllEmailList = () => {
                       data: doc.data()
                      })))
         setFetching(false)
-
       });
+
+      
+    },[])
     
-  },[])
 
 
 
   return (
     <Box sx={{}}>
-
-      <MailBody
-        sender={"LinkedIn"}
-        subject={"30+ new jobs for frontend developer "}
-        msg={"SoftWare Engineering -Front end  Developer and other roles"}
-      />
-      <MailBody
-        sender={"LinkedIn"}
-        subject={"30+ new jobs for frontend developer "}
-        msg={"SoftWare Engineering -Front end  Developer and other roles"}
-      />
     
-
         {
+         
          fetching ? "loading..." : Mails.map((mail) => {
+
             return  <MailBody
             key={mail.id}
             sender={mail.data.Recipents}
             subject={mail.data.Subject}
             msg={mail.data.Message}
+            date={new Date(mail.data.timestamp?.seconds * 1000).toLocaleTimeString()}
           />
            })
           
