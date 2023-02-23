@@ -13,6 +13,7 @@ import { addDoc, collection,serverTimestamp   } from "firebase/firestore";
 import MailDetails from "./Components/MailDetails";
 import { db } from "./Firebase";
 import { Route, Routes } from "react-router-dom";
+import Login from "./Components/authentication/Login";
 
 function App() {
 
@@ -32,8 +33,8 @@ function App() {
   const [formRecipents, setformRecipents ]  = useState("")
   const [formSubject, setformSubject ]  = useState("")
   const [formMsg, setformMsg ]  = useState("")
-
-
+  
+  
   const formSubmittedFucntion = async (e) => {
     e.preventDefault()
 
@@ -57,64 +58,68 @@ function App() {
       console.error("Error adding document: ", e);
     }
 }
+  
+       
 
+  const user = 'null'
 
   return (
+    <>
+   {
+    user ? ( 
     <div className="App">
-      <Header />
-      <Stack
-        direction={"row"}
-        sx={{
-          fontFamily: "Open Sans, sans-serif",
-        }}
-      >
-        <Sidebar
-          setShowCompose={setShowCompose}
-          setHalfShowCompose={setHalfShowCompose}
-        />
+    <Header />
+    <Stack
+      direction={"row"}
+      sx={{
+        fontFamily: "Open Sans, sans-serif",
+      }}
+    >
+      <Sidebar />
 
-        <Stack direction={"column"} sx={{}}>
-          <Routes>
-            <Route path='/' element={ <AllEmailList clickedMail={clickedMail} setClickedMail ={setClickedMail}/>} />
-           { 
-          clickedMail !== null ? <Route path={`/${clickedMail.id}`} element={<MailDetails clickedMail={clickedMail} />} /> : null
-           }
-          </Routes>
-        
-        </Stack>
+      <Stack direction={"column"} sx={{}}>
+        <Routes>
+          <Route path='/' element={ <AllEmailList clickedMail={clickedMail} setClickedMail ={setClickedMail}/>} />
+         { 
+        clickedMail !== null ? <Route path={`/${clickedMail.id}`} element={<MailDetails clickedMail={clickedMail} />} /> : null
+         }
+        </Routes>
+      
       </Stack>
-      <ComposeModal
-        isFocused={isFocused}
-        setIsFocused={setIsFocused}
-        setShowCompose={setShowCompose}
-        ShowHalfCompose={ShowHalfCompose}
-        setHalfShowCompose={setHalfShowCompose}
-        ShowCompose={ShowCompose}
-        formRecipents = { formRecipents }
-        setformRecipents  = { setformRecipents }
-        formSubject  = { formSubject }
-        setformSubject = { setformSubject }
-        formMsg = { formMsg }
-        setformMsg  = { setformMsg }
-        formSubmittedFucntion={formSubmittedFucntion}
-      />
-      <HalfScreenComposeModal
-        isFocused={isFocused}
-        setIsFocused={setIsFocused}
-        setShowCompose={setShowCompose}
-        ShowCompose={ShowCompose}
-        ShowHalfCompose={ShowHalfCompose}
-        setHalfShowCompose={setHalfShowCompose}
-        formRecipents = { formRecipents }
-        setformRecipents  = { setformRecipents }
-        formSubject  = { formSubject }
-        setformSubject = { setformSubject }
-        formMsg = { formMsg }
-        setformMsg  = { setformMsg }
-        formSubmittedFucntion={formSubmittedFucntion}
-      />
-    </div>
-  );
+    </Stack>
+    <ComposeModal
+      isFocused={isFocused}
+      setIsFocused={setIsFocused}
+      setShowCompose={setShowCompose}
+      ShowHalfCompose={ShowHalfCompose}
+      setHalfShowCompose={setHalfShowCompose}
+      ShowCompose={ShowCompose}
+      formRecipents = { formRecipents }
+      setformRecipents  = { setformRecipents }
+      formSubject  = { formSubject }
+      setformSubject = { setformSubject }
+      formMsg = { formMsg }
+      setformMsg  = { setformMsg }
+      formSubmittedFucntion={formSubmittedFucntion}
+    />
+    <HalfScreenComposeModal
+      isFocused={isFocused}
+      setIsFocused={setIsFocused}
+      setShowCompose={setShowCompose}
+      ShowCompose={ShowCompose}
+      formRecipents = { formRecipents }
+      setformRecipents  = { setformRecipents }
+      formSubject  = { formSubject }
+      setformSubject = { setformSubject }
+      formMsg = { formMsg }
+      setformMsg  = { setformMsg }
+      formSubmittedFucntion={formSubmittedFucntion}
+    />
+  </div>
+  ) : <Login />
+} 
+  </>
+  )
 }
 
 export default App;

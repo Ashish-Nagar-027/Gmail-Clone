@@ -10,15 +10,19 @@ import {
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import { useDispatch, useSelector } from "react-redux";
+import { closeSendMessage, selectOpenHalfCompose } from "../features/counter/mailSlice";
+import { useState } from "react";
+import { selectFormValues, setFormValues } from "../features/counter/formSlice";
 
 
 
 const HalfScreenComposeModal = ({
-  setHalfShowCompose,
+ 
   setShowCompose,
   isFocused,
   setIsFocused,
-  ShowHalfCompose,
+  
   formRecipents ,
   setformRecipents,
   formSubject ,
@@ -27,10 +31,24 @@ const HalfScreenComposeModal = ({
   setformMsg ,
   formSubmittedFucntion
 }) => {
+
+  const showHalfComposeModal = useSelector(selectOpenHalfCompose)
+  const formValues = useSelector(selectFormValues)
+  // console.log(formValues)
+
+  const dispatch = useDispatch()
+
+  // const [formValues, setFormValue] = useState({Recipients:'', Subject:'' , Message:''})
+
+  const handleFormValues = (e) => {
+
+    dispatch(setFormValues(e.target))
+  }
+
   return (
     <Box
       sx={{
-        display: ShowHalfCompose ? "block" : "none",
+        display: showHalfComposeModal ? "block" : "none",
         position: "fixed",
         right: "2rem",
         bottom: "1rem",
@@ -83,7 +101,7 @@ const HalfScreenComposeModal = ({
             />
             <OpenInFullIcon
               onClick={(e) => {
-                setHalfShowCompose(false);
+                dispatch(closeSendMessage())
                 setShowCompose(true);
               }}
               sx={{
@@ -97,7 +115,7 @@ const HalfScreenComposeModal = ({
               }}
             />
             <CloseIcon
-              onClick={(e) => setHalfShowCompose(false)}
+               onClick={() => dispatch(closeSendMessage())}
               sx={{
                 transform: "scale(0.7)",
                 cursor: "pointer",
@@ -112,6 +130,7 @@ const HalfScreenComposeModal = ({
 
         <form onSubmit={(e) =>formSubmittedFucntion(e)}>
           <Input
+          name='Recipients'
             id="standard-adornment-amount"
             startAdornment={
               <InputAdornment position="start">
@@ -125,8 +144,8 @@ const HalfScreenComposeModal = ({
             }
             onFocus={(e) => setIsFocused(true)}
             onBlur={(e) => setIsFocused(false)}
-            onChange={(e) => setformRecipents(e.target.value)}
-            value={formRecipents}
+            onChange={handleFormValues}
+            value={formValues.Recipients}
             sx={{
               border: "none",
               boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
@@ -139,9 +158,10 @@ const HalfScreenComposeModal = ({
           />
         
           <Input
+          name='Subject'
             placeholder="subject"
-            onChange={(e) => setformSubject(e.target.value)}
-            value={formSubject}
+            onChange={handleFormValues}
+            value={formValues.Subject}
             sx={{
               padding: "5px 10px",
               border: "none",
@@ -154,8 +174,9 @@ const HalfScreenComposeModal = ({
           />
         
           <textarea
-           onChange={(e) => setformMsg(e.target.value)}
-           value={formMsg}
+          name='Message'
+           onChange={handleFormValues}
+           value={formValues.Message}
             style={{
               border: "none",
               outline: "none",
@@ -171,6 +192,7 @@ const HalfScreenComposeModal = ({
         </form>
       </Box>
     </Box>
+   
   );
 };
 

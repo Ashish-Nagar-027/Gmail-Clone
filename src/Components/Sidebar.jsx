@@ -10,6 +10,8 @@ import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+import { useDispatch } from 'react-redux';
+import { openSendMessage } from '../features/counter/mailSlice';
 
 
 const SidebarBox = styled(Box)({
@@ -51,14 +53,20 @@ const ComposeIcon = styled(Icon)({
 
 })
 
-const Sidebar = ({setShowCompose,setHalfShowCompose}) => {
+const Sidebar = () => {
+   
+
+    const dispatch = useDispatch()
+   
+
+
     return (
         <SidebarBox>
             <ComposeIcon
                 className='ShowNow'
                 variant="contained"
                 bgcolor='#C2E7FF'
-                onClick={() =>setHalfShowCompose(true)}
+                onClick={() => dispatch(openSendMessage())}
                  >
 
                 <CreateOutlinedIcon />

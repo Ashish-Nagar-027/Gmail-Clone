@@ -19,7 +19,7 @@ const MailBody = ({mail,setClickedMail}) => {
    <Box sx={{
     cursor:'pointer',
     display: 'grid',
-    gridTemplateColumns:'300px auto 150px',
+    gridTemplateColumns:'350px auto 150px',
     overflow:'hidden',
     alignItems:'center',
     height:'40px',
@@ -34,7 +34,8 @@ const MailBody = ({mail,setClickedMail}) => {
     display: 'flex',
     alignItems:'center',
     cursor:'pointer' ,
-    color:'gray' ,
+    color:'gray' ,  
+    overflow:'hidden',
     '&:hover':{
         color:'#444746', 
          }}}>
@@ -44,7 +45,7 @@ const MailBody = ({mail,setClickedMail}) => {
         <IconButton sx={{transform:'scale(0.8)'}}>
           <StarBorderOutlinedIcon />
         </IconButton>
-        <Typography color='#444746' component={'div'}  fontSize={14} fontWeight={600}>
+        <Typography sx={{ whiteSpace:'nowrap', width:'65%', padding:'0px 5px 0px 0px', overflow:'hidden',}} color='#444746' component={'div'}  fontSize={14} fontWeight={600}>
             <span>{mail.data.Recipents}</span>
         </Typography>
     </Box>

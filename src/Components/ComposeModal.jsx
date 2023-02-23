@@ -9,6 +9,8 @@ import {
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
+import { openSendMessage } from "../features/counter/mailSlice";
+import { useDispatch } from "react-redux";
 
 // Add a second document with a generated ID.
 
@@ -53,6 +55,8 @@ const ComposeModal = ({
   setformMsg ,
   formSubmittedFucntion
  }) => {
+
+  const dispatch = useDispatch()
   
 
    
@@ -105,8 +109,9 @@ const ComposeModal = ({
             />
             <CloseFullscreenIcon
               onClick={(e) => {
-                setHalfShowCompose(true);
+                dispatch(openSendMessage())
                 setShowCompose(false);
+                
               }}
               sx={style.styleForIcons}
             />
