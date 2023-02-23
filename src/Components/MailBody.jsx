@@ -1,21 +1,34 @@
 import { Box, IconButton, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import { useNavigate } from 'react-router-dom';
 
+const MailBody = ({mail,setClickedMail}) => {
+  
+  const NavigateToMail = useNavigate()
+  
+  
+  function mailClickHandle(mail) {
+    console.log('clicked')
+    setClickedMail(mail)
+    NavigateToMail(mail.id)
+  }
 
-const MailBody = ({sender, subject, msg, date}) => {
   return (
    <Box sx={{
     cursor:'pointer',
     display: 'grid',
     gridTemplateColumns:'300px auto 150px',
-    boxShadow: 'inset 0 -1px 0 0 rgb(100 121 143 / 12%)',
     overflow:'hidden',
+    alignItems:'center',
+    height:'40px',
     '&:hover':{
         boxShadow: '0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%)',
          }
-   }}>
+   }}
+   onClick={() =>mailClickHandle(mail)}
+   >
 
     <Box sx={{
     display: 'flex',
@@ -31,23 +44,24 @@ const MailBody = ({sender, subject, msg, date}) => {
         <IconButton sx={{transform:'scale(0.8)'}}>
           <StarBorderOutlinedIcon />
         </IconButton>
-        <Typography color='#444746' component={'span'} fontSize={14} fontWeight={600}>
-            {sender}
+        <Typography color='#444746' component={'div'}  fontSize={14} fontWeight={600}>
+            <span>{mail.data.Recipents}</span>
         </Typography>
     </Box>
 
-         <Box sx={{display:'flex', alignItems:'center', overflow:'hidden'}}>
-         <Typography color='#444746' component={'span'} fontSize={14} fontWeight={600} sx={{display:'flex', alignItems:'center',paddingRight:'10px'}}>
-            {subject}
-            <Typography fontSize={13}>
-                   -- {msg}...
-            </Typography>
+
+      
+      <Box sx={{minWidth:'400px',  maxWidth:'50vw',display:'flex', alignItems:'center'}}>
+         <Typography color='#444746' component={'div'} fontSize={14} fontWeight={600} sx={{display:'flex',whiteSpace:'nowrap',paddingRight:'10px' ,overflow:'hidden'}}>
+            <span style={{paddingRight:'10px', fontSize:'14px', fontWeight:'600'}}>{mail.data.Subject}</span>  
+            -- <span style={{fontSize:'12px', fontWeight:'400',}}>{mail.data.Message}</span>
         </Typography>
-         </Box>
-         
+        </Box>
+
+
          <Box sx={{display:'flex', alignItems:'center',justifyContent:'center'}}>
          <Typography fontSize={12}>
-                {date}
+           {new Date(mail.data.timestamp?.seconds * 1000).toLocaleTimeString()}
             </Typography>
          </Box>
     </Box>

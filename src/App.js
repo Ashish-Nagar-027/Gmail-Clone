@@ -1,19 +1,29 @@
 import { Stack } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import AllEmailList from "./Components/AllEmailList";
 import ComposeModal from "./Components/ComposeModal";
 import Header from "./Components/Header";
-import SectionBar from "./Components/SectionBar";
+
 import Sidebar from "./Components/Sidebar";
-import TopBarTools from "./Components/TopBarTools";
+
 import { useState } from "react";
 import HalfScreenComposeModal from "./Components/HalfScreenComposeModal";
 import { addDoc, collection,serverTimestamp   } from "firebase/firestore"; 
-
+import MailDetails from "./Components/MailDetails";
 import { db } from "./Firebase";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
+
+  const [clickedMail, setClickedMail] = useState(null)
+
+  
+  useEffect(() => {
+    console.log(clickedMail)
+
+  }, [clickedMail])
+  
   
   const [isFocused, setIsFocused] = useState(false);
   const [ShowCompose, setShowCompose] = useState(false);
@@ -64,9 +74,13 @@ function App() {
         />
 
         <Stack direction={"column"} sx={{}}>
-          <TopBarTools />
-          <SectionBar />
-          <AllEmailList />
+          <Routes>
+            <Route path='/' element={ <AllEmailList clickedMail={clickedMail} setClickedMail ={setClickedMail}/>} />
+           { 
+          clickedMail !== null ? <Route path={`/${clickedMail.id}`} element={<MailDetails clickedMail={clickedMail} />} /> : null
+           }
+          </Routes>
+        
         </Stack>
       </Stack>
       <ComposeModal

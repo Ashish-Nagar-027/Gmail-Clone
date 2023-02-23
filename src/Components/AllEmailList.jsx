@@ -5,10 +5,12 @@ import MailBody from "./MailBody";
 import { collection,  onSnapshot,orderBy,query } from "firebase/firestore"; 
 import { useEffect } from "react";
 import { db } from "../Firebase";
+import TopBarTools from "./TopBarTools";
+import SectionBar from "./SectionBar";
 
 
 
-const AllEmailList = () => {
+const AllEmailList = ({setClickedMail,clickedMail}) => {
 
     
   const [fetching, setFetching] = useState(true)
@@ -34,22 +36,25 @@ const AllEmailList = () => {
 
   return (
     <Box sx={{}}>
-    
+      <TopBarTools />
+      <SectionBar />
         {
          
-         fetching ? "loading..." : Mails.map((mail) => {
+         fetching ? "loading..." : Mails.map((mail) => <MailBody
+         mail={mail}
+           key={mail.id}
+           mailiId={mail.id}
+           sender={mail.data.Recipents}
+           subject={mail.data.Subject}
+           msg={mail.data.Message}
+           setClickedMail={setClickedMail}
+           clickedMail={clickedMail}
 
-            return  <MailBody
-            key={mail.id}
-            sender={mail.data.Recipents}
-            subject={mail.data.Subject}
-            msg={mail.data.Message}
-            date={new Date(mail.data.timestamp?.seconds * 1000).toLocaleTimeString()}
-          />
-           })
+           />)
+          //  date={new Date(mail.data.timestamp?.seconds * 1000).toLocaleTimeString()} 
           
-        }
-    
+          }
+          
     </Box>
   );
 };
