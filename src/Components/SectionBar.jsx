@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import InboxIcon from "@mui/icons-material/Inbox";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import { Link } from "react-router-dom";
 
 const BoxItem = styled(Box)({
   padding: "15px 10px",
@@ -37,61 +38,70 @@ const SectionBar = () => {
 
   return (
     <Box sx={{ display: "flex", fontSize: "0.8rem" }}>
-      <BoxItem
-        sx={{
-          width: "250px",
-          borderBottom:
-            activeBox === "Primary" ? "3px solid #1565C0 " : "3px solid white",
-          color: activeBox === "Primary" ? "#1565C0 " : "#444746",
-        }}
-        onClick={(e) => setActiveBoxFunction(e)}
-        className="Primary"
-      >
-        <InboxIcon sx={{ transform: "scale(0.8)" }} className="Primary" />
-        <Typography fontSize={15} className="Primary">
-          Primary
-        </Typography>
-      </BoxItem>
+      <Link to=".">
+        <BoxItem
+          sx={{
+            width: "250px",
+            borderBottom:
+              activeBox === "Primary"
+                ? "3px solid #1565C0 "
+                : "3px solid white",
+            color: activeBox === "Primary" ? "#1565C0 " : "#444746",
+          }}
+          onClick={(e) => setActiveBoxFunction(e)}
+          className="Primary"
+        >
+          <InboxIcon sx={{ transform: "scale(0.8)" }} className="Primary" />
+          <Typography fontSize={15} className="Primary">
+            Primary
+          </Typography>
+        </BoxItem>
+      </Link>
 
-      <BoxItem
-        onClick={(e) => setActiveBoxFunction(e)}
-        sx={{
-          width: "250px",
-          borderBottom:
-            activeBox === "Promotions"
-              ? "3px solid #1565C0 "
-              : "3px solid white",
-          color: activeBox === "Promotions" ? "#1565C0 " : "#444746",
-        }}
-        className="Promotions"
-      >
-        <LocalOfferOutlinedIcon
-          sx={{ transform: "scale(0.8)" }}
+      <Link to="promotions">
+        <BoxItem
+          onClick={(e) => setActiveBoxFunction(e)}
+          sx={{
+            width: "250px",
+            borderBottom:
+              activeBox === "Promotions"
+                ? "3px solid #1565C0 "
+                : "3px solid white",
+            color: activeBox === "Promotions" ? "#1565C0 " : "#444746",
+          }}
           className="Promotions"
-        />
-        <Typography fontSize={15} className="Promotions">
-          Promotions
-        </Typography>
-      </BoxItem>
-
-      <BoxItem
-        onClick={(e) => setActiveBoxFunction(e)}
-        sx={{
-          width: "250px",
-          borderBottom:
-            activeBox === "Socials" ? "3px solid #1565C0 " : "3px solid white",
-          color: activeBox === "Socials" ? "#1565C0 " : "#444746",
-        }}
-        className="Socials"
-      >
-        <GroupOutlinedIcon
-          sx={{ transform: "scale(0.8)" }}
+        >
+          <LocalOfferOutlinedIcon
+            sx={{ transform: "scale(0.8)" }}
+            className="Promotions"
+          />
+          <Typography fontSize={15} className="Promotions">
+            Promotions
+          </Typography>
+        </BoxItem>
+      </Link>
+      <Link to="socials">
+        <BoxItem
+          onClick={(e) => setActiveBoxFunction(e)}
+          sx={{
+            width: "250px",
+            borderBottom:
+              activeBox === "Socials"
+                ? "3px solid #1565C0 "
+                : "3px solid white",
+            color: activeBox === "Socials" ? "#1565C0 " : "#444746",
+          }}
           className="Socials"
-        />
-        <Typography fontSize={15} className="Socials">
-          Socials
-        </Typography>
-      </BoxItem>
+        >
+          <GroupOutlinedIcon
+            sx={{ transform: "scale(0.8)" }}
+            className="Socials"
+          />
+          <Typography fontSize={15} className="Socials">
+            Socials
+          </Typography>
+        </BoxItem>
+      </Link>
     </Box>
   );
 };

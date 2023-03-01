@@ -4,69 +4,62 @@ import {
   Input,
   InputAdornment,
   Modal,
-  Typography, 
+  Typography,
 } from "@mui/material";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
-import { openSendMessage } from "../features/counter/mailSlice";
-import { useDispatch } from "react-redux";
+import {
+  closeFullComposeModal,
+  closeSendMessage,
+  selectOpenFullCompose,
+} from "../features/counter/mailSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 // Add a second document with a generated ID.
 
-
-
-
 const style = {
-  styleForIcons :  {
-      transform: "scale(0.7)",
-      cursor: "pointer",
+  styleForIcons: {
+    transform: "scale(0.7)",
+    cursor: "pointer",
 
-      "&:hover": {
-        backgroundColor: "rgba(68,71,70,0.078)",
-        opacity: "1",
-      },
+    "&:hover": {
+      backgroundColor: "rgba(68,71,70,0.078)",
+      opacity: "1",
     },
+  },
 
-    inputs: {
-        padding: "5px 15px",
-        border: "none",
-        boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
-        "&::before": { border: "none", "&:hover": { border: "none" } },
-        "&::after": { border: "none", "&:hover": { border: "none" } },
-        "&:hover": { border: "none" },
-        width:'100%',
-        outline:'none'
-      }
-}
-
+  inputs: {
+    padding: "5px 15px",
+    border: "none",
+    boxShadow: "inset 0 -1px 0 0 rgb(100 121 143 / 12%)",
+    "&::before": { border: "none", "&:hover": { border: "none" } },
+    "&::after": { border: "none", "&:hover": { border: "none" } },
+    "&:hover": { border: "none" },
+    width: "100%",
+    outline: "none",
+  },
+};
 
 const ComposeModal = ({
-  setShowCompose,
-  ShowCompose,
   isFocused,
   setIsFocused,
-  setHalfShowCompose,
-  formRecipents ,
-  setformRecipents,
-  formSubject ,
-  setformSubject,
-  formMsg,
-  setformMsg ,
-  formSubmittedFucntion
- }) => {
+  formValues,
+  setFormValue,
+  formSubmittedFucntion,
+}) => {
+  const showFullCompose = useSelector(selectOpenFullCompose);
 
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
 
-   
-
- 
+  const handleFormValues = (e) => {
+    setFormValue({ ...formValues, [e.target.name]: e.target.value });
+  };
 
   return (
     <Modal
-      open={ShowCompose}
-      onClose={(e) => setShowCompose(false)}
+      open={showFullCompose}
+      onClose={(e) => dispatch(closeSendMessage())}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       sx={{
@@ -104,34 +97,32 @@ const ComposeModal = ({
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <MinimizeIcon
-               sx={style.styleForIcons}
-            />
+            <MinimizeIcon sx={style.styleForIcons} />
             <CloseFullscreenIcon
               onClick={(e) => {
-                dispatch(openSendMessage())
-                setShowCompose(false);
-                
+                dispatch(closeFullComposeModal());
               }}
               sx={style.styleForIcons}
             />
             <CloseIcon
-              onClick={(e) => setShowCompose(false)}
+              onClick={(e) => dispatch(closeSendMessage())}
               sx={style.styleForIcons}
             />
           </Box>
         </Box>
 
-       <form 
-       onSubmit={(e) =>formSubmittedFucntion(e)}
-       sx={{display:'flex', flexDirection:'column'}} 
-       >
+        <form
+          onSubmit={(e) => formSubmittedFucntion(e)}
+          sx={{ display: "flex", flexDirection: "column" }}
+        >
           <Input
-          m={1} variant="standard"
+            name="Recipients"
+            m={1}
+            variant="standard"
             onFocus={(e) => setIsFocused(true)}
             onBlur={(e) => setIsFocused(false)}
-            onChange={(e) => setformRecipents(e.target.value)}
-            value={formRecipents}
+            onChange={handleFormValues}
+            value={formValues.Recipients}
             sx={style.inputs}
             startAdornment={
               <InputAdornment position="start">
@@ -144,34 +135,46 @@ const ComposeModal = ({
               </InputAdornment>
             }
           />
-     
+
           <Input
-           m={1} variant="standard"
+            name="Subject"
+            m={1}
+            variant="standard"
             placeholder="subject"
             sx={style.inputs}
             border="none"
-            onChange={(e) => setformSubject(e.target.value)}
-            value={formSubject}
-            
+            onChange={handleFormValues}
+            value={formValues.Subject}
           />
 
           <textarea
-           onChange={(e) => setformMsg(e.target.value)}
-           value={formMsg}
+            name="Message"
+            onChange={handleFormValues}
+            value={formValues.Message}
             style={{
               border: "none",
               outline: "none",
               maxWidth: "100%",
-              minWidth:"90%",
+              minWidth: "90%",
               margin: "10px auto",
               backgroundColor: "whitesmoke",
-              minHeight:'300px',
+              minHeight: "300px",
               padding: "5px 15px",
-              
             }}
           ></textarea>
-        <Button onClick={(e) => formSubmittedFucntion(e)} variant="contained" sx={{borderRadius:'20px', marginTop:'100px', marginLeft:'10px', display:'block'}}>Send</Button>
-      </form>
+          <Button
+            onClick={(e) => formSubmittedFucntion(e)}
+            variant="contained"
+            sx={{
+              borderRadius: "20px",
+              marginTop: "100px",
+              marginLeft: "10px",
+              display: "block",
+            }}
+          >
+            Send
+          </Button>
+        </form>
       </Box>
     </Modal>
   );

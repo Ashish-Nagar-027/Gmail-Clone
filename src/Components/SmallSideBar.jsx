@@ -13,26 +13,19 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useDispatch } from "react-redux";
 import { openSendMessage } from "../features/counter/mailSlice";
 
-const SidebarBox = styled(Box)({
-  padding: "1rem 1rem 1rem 0rem",
+const SmallSidebarBox = styled(Box)({
   display: "flex",
   position: "relative",
   flexDirection: "column",
   backgroundColor: "#F6F8FC",
   height: "100vh",
   fontWeight: "400",
-  width: "250px",
+  minWidth: "100px",
   color: "#444746",
   "& .ShowNow": {
     width: "fit-content",
   },
   transition: "all 0.2s ease-in-out",
-  "&:hover": {
-    width: "250px",
-    "& .ShowNow": {
-      width: "fit-content",
-    },
-  },
 });
 
 const ComposeIcon = styled(Icon)({
@@ -49,15 +42,14 @@ const ComposeIcon = styled(Icon)({
     backgroundColor: "#c2e7ff",
     boxShadow:
       "0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%)",
-    width: "140px",
   },
 });
 
-const Sidebar = () => {
+const SmallSideBar = () => {
   const dispatch = useDispatch();
 
   return (
-    <SidebarBox>
+    <SmallSidebarBox>
       <ComposeIcon
         className="ShowNow"
         variant="contained"
@@ -65,40 +57,16 @@ const Sidebar = () => {
         onClick={() => dispatch(openSendMessage())}
       >
         <CreateOutlinedIcon />
-
-        <Typography variant="p" fontWeight={500} fontSize={16}>
-          Compose
-        </Typography>
       </ComposeIcon>
 
-      <SideBarIcon
-        IconType={InboxOutlinedIcon}
-        IconName={"Inbox"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon
-        IconType={StarBorderOutlinedIcon}
-        IconName={"Stared"}
-        InsideNumber={"10"}
-      />
-      <SideBarIcon
-        IconType={WatchLaterOutlinedIcon}
-        IconName={"Snoozed"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon
-        IconType={SendOutlinedIcon}
-        IconName={"Sent"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon
-        IconType={DescriptionOutlinedIcon}
-        IconName={"Drafts"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon IconType={ExpandMoreOutlinedIcon} IconName={"More"} />
-    </SidebarBox>
+      <SideBarIcon IconType={InboxOutlinedIcon} />
+      <SideBarIcon IconType={StarBorderOutlinedIcon} />
+      <SideBarIcon IconType={WatchLaterOutlinedIcon} />
+      <SideBarIcon IconType={SendOutlinedIcon} />
+      <SideBarIcon IconType={DescriptionOutlinedIcon} />
+      <SideBarIcon IconType={ExpandMoreOutlinedIcon} />
+    </SmallSidebarBox>
   );
 };
 
-export default Sidebar;
+export default SmallSideBar;

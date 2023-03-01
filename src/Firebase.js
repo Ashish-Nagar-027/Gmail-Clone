@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -13,7 +13,7 @@ const firebaseConfig = {
   projectId: "clone-react-32ad6",
   storageBucket: "clone-react-32ad6.appspot.com",
   messagingSenderId: "403178087889",
-  appId: "1:403178087889:web:119ca7d75f746d74e86cf0"
+  appId: "1:403178087889:web:119ca7d75f746d74e86cf0",
 };
 
 // Initialize Firebase
@@ -21,5 +21,8 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+export { db };
 
-export {db}
+//for google authentication
+
+export const auth = getAuth(app);

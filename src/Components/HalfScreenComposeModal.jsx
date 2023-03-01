@@ -1,49 +1,30 @@
-import {
-  Box,
-  Button,
-
-  Input,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Input, InputAdornment, Typography } from "@mui/material";
 // import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { useDispatch, useSelector } from "react-redux";
-import { closeSendMessage, selectOpenHalfCompose } from "../features/counter/mailSlice";
-import { useState } from "react";
-import { selectFormValues, setFormValues } from "../features/counter/formSlice";
 
-
+import {
+  closeSendMessage,
+  openFullComposeModal,
+  selectOpenHalfCompose,
+} from "../features/counter/mailSlice";
 
 const HalfScreenComposeModal = ({
- 
-  setShowCompose,
   isFocused,
   setIsFocused,
-  
-  formRecipents ,
-  setformRecipents,
-  formSubject ,
-  setformSubject,
-  formMsg,
-  setformMsg ,
-  formSubmittedFucntion
+  formValues,
+  setFormValue,
+  formSubmittedFucntion,
 }) => {
+  const showHalfComposeModal = useSelector(selectOpenHalfCompose);
 
-  const showHalfComposeModal = useSelector(selectOpenHalfCompose)
-  const formValues = useSelector(selectFormValues)
-  // console.log(formValues)
-
-  const dispatch = useDispatch()
-
-  // const [formValues, setFormValue] = useState({Recipients:'', Subject:'' , Message:''})
+  const dispatch = useDispatch();
 
   const handleFormValues = (e) => {
-
-    dispatch(setFormValues(e.target))
-  }
+    setFormValue({ ...formValues, [e.target.name]: e.target.value });
+  };
 
   return (
     <Box
@@ -76,7 +57,6 @@ const HalfScreenComposeModal = ({
             padding: "8px 16px",
             backgroundColor: "#EAF1FB",
             borderRadius: "10px 10px 0px 0px",
-           
           }}
         >
           <Typography
@@ -101,8 +81,7 @@ const HalfScreenComposeModal = ({
             />
             <OpenInFullIcon
               onClick={(e) => {
-                dispatch(closeSendMessage())
-                setShowCompose(true);
+                dispatch(openFullComposeModal());
               }}
               sx={{
                 transform: "scale(0.7)",
@@ -115,7 +94,7 @@ const HalfScreenComposeModal = ({
               }}
             />
             <CloseIcon
-               onClick={() => dispatch(closeSendMessage())}
+              onClick={() => dispatch(closeSendMessage())}
               sx={{
                 transform: "scale(0.7)",
                 cursor: "pointer",
@@ -128,9 +107,10 @@ const HalfScreenComposeModal = ({
           </Box>
         </Box>
 
-        <form onSubmit={(e) =>formSubmittedFucntion(e)}>
+        <form onSubmit={(e) => formSubmittedFucntion(e)}>
           <Input
-          name='Recipients'
+            required
+            name="Recipients"
             id="standard-adornment-amount"
             startAdornment={
               <InputAdornment position="start">
@@ -152,13 +132,13 @@ const HalfScreenComposeModal = ({
               "&::before": { border: "none", "&:hover": { border: "none" } },
               "&::after": { border: "none", "&:hover": { border: "none" } },
               "&:hover": { border: "none" },
-              width:'100%',
-              padding:'10px'
+              width: "100%",
+              padding: "10px",
             }}
           />
-        
+
           <Input
-          name='Subject'
+            name="Subject"
             placeholder="subject"
             onChange={handleFormValues}
             value={formValues.Subject}
@@ -169,30 +149,41 @@ const HalfScreenComposeModal = ({
               "&::before": { border: "none", "&:hover": { border: "none" } },
               "&::after": { border: "none", "&:hover": { border: "none" } },
               "&:hover": { border: "none" },
-              width:'100%'
+              width: "100%",
             }}
+            required
           />
-        
+
           <textarea
-          name='Message'
-           onChange={handleFormValues}
-           value={formValues.Message}
+            name="Message"
+            onChange={handleFormValues}
+            value={formValues.Message}
             style={{
               border: "none",
               outline: "none",
               width: "100%",
               margin: "10px auto",
               minHeight: "300px",
-              width:'100%',
-              padding: '5px 10px '
+              width: "100%",
+              padding: "5px 10px ",
             }}
+            required
           ></textarea>
-        
-        <Button onClick={(e) => formSubmittedFucntion(e)} variant="contained" sx={{borderRadius:'20px', marginBottom:'10px', marginLeft:'10px'}}>Send</Button>
+
+          <Button
+            onClick={(e) => formSubmittedFucntion(e)}
+            variant="contained"
+            sx={{
+              borderRadius: "20px",
+              marginBottom: "10px",
+              marginLeft: "10px",
+            }}
+          >
+            Send
+          </Button>
         </form>
       </Box>
     </Box>
-   
   );
 };
 
