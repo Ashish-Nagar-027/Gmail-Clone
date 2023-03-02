@@ -1,5 +1,5 @@
 import { Box, Button, Input, InputAdornment, Typography } from "@mui/material";
-// import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
@@ -161,7 +161,7 @@ const HalfScreenComposeModal = ({
             style={{
               border: "none",
               outline: "none",
-              width: "100%",
+
               margin: "10px auto",
               minHeight: "300px",
               width: "100%",

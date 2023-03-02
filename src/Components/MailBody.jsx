@@ -1,5 +1,5 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { useNavigate } from "react-router-dom";

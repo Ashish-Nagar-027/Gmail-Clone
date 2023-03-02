@@ -12,9 +12,10 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useDispatch } from "react-redux";
 import { openSendMessage } from "../features/counter/mailSlice";
+import { NavLink } from "react-router-dom";
 
 const SidebarBox = styled(Box)({
-  padding: "1rem 1rem 1rem 0rem",
+  padding: "1rem 2rem 1rem 0rem",
   display: "flex",
   position: "relative",
   flexDirection: "column",
@@ -70,32 +71,58 @@ const Sidebar = () => {
           Compose
         </Typography>
       </ComposeIcon>
+      <NavLink
+        className={({ isActive }) => (isActive ? "link active-link" : "link")}
+        to="/"
+      >
+        <SideBarIcon
+          IconType={InboxOutlinedIcon}
+          IconName={"Inbox"}
+          InsideNumber={"30"}
+        />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => (isActive ? "link active-link" : "link")}
+        to="stared"
+      >
+        <SideBarIcon
+          IconType={StarBorderOutlinedIcon}
+          IconName={"Starred"}
+          InsideNumber={"10"}
+        />
+      </NavLink>
 
-      <SideBarIcon
-        IconType={InboxOutlinedIcon}
-        IconName={"Inbox"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon
-        IconType={StarBorderOutlinedIcon}
-        IconName={"Stared"}
-        InsideNumber={"10"}
-      />
-      <SideBarIcon
-        IconType={WatchLaterOutlinedIcon}
-        IconName={"Snoozed"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon
-        IconType={SendOutlinedIcon}
-        IconName={"Sent"}
-        InsideNumber={"30"}
-      />
-      <SideBarIcon
-        IconType={DescriptionOutlinedIcon}
-        IconName={"Drafts"}
-        InsideNumber={"30"}
-      />
+      <NavLink
+        className={({ isActive }) => (isActive ? "link active-link" : "link")}
+        to="/snoozed"
+      >
+        <SideBarIcon
+          IconType={WatchLaterOutlinedIcon}
+          IconName={"Snoozed"}
+          InsideNumber={"30"}
+        />
+      </NavLink>
+
+      <NavLink
+        className={({ isActive }) => (isActive ? "link active-link" : "link")}
+        to="/sent"
+      >
+        <SideBarIcon
+          IconType={SendOutlinedIcon}
+          IconName={"Sent"}
+          InsideNumber={"30"}
+        />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => (isActive ? "link active-link" : "link")}
+        to="/drafts"
+      >
+        <SideBarIcon
+          IconType={DescriptionOutlinedIcon}
+          IconName={"Drafts"}
+          InsideNumber={"30"}
+        />
+      </NavLink>
       <SideBarIcon IconType={ExpandMoreOutlinedIcon} IconName={"More"} />
     </SidebarBox>
   );

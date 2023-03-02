@@ -27,20 +27,22 @@ const AllEmailList = ({ setClickedMail, clickedMail }) => {
   return (
     <Box sx={{}}>
       {
-        fetching
-          ? "loading..."
-          : Mails.map((mail) => (
-              <MailBody
-                mail={mail}
-                key={mail.id}
-                mailiId={mail.id}
-                sender={mail.data.Recipents}
-                subject={mail.data.Subject}
-                msg={mail.data.Message}
-                setClickedMail={setClickedMail}
-                clickedMail={clickedMail}
-              />
-            ))
+        fetching ? (
+          <h2 style={{ padding: "1rem" }}>loading . . .</h2>
+        ) : (
+          Mails.map((mail) => (
+            <MailBody
+              mail={mail}
+              key={mail.id}
+              mailiId={mail.id}
+              sender={mail.data.Recipents}
+              subject={mail.data.Subject}
+              msg={mail.data.Message}
+              setClickedMail={setClickedMail}
+              clickedMail={clickedMail}
+            />
+          ))
+        )
         //  date={new Date(mail.data.timestamp?.seconds * 1000).toLocaleTimeString()}
       }
     </Box>

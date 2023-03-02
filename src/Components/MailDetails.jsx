@@ -1,15 +1,6 @@
-import {
-  Avatar,
-  Button,
-  Icon,
-  IconButton,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Avatar, Button, IconButton, Tooltip, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React from "react";
-
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";

@@ -8,11 +8,6 @@ import { selectshowfullSidebar } from "../features/sidebarSlice";
 const SidebarItems = styled(Box)({
   display: "flex",
   gap: "15px",
-
-  // ":hover": {
-  //   background:"#EAEBEF" ,
-  //   borderRadius: "2rem",
-  // },
 });
 
 const IconDiv = styled(Icon)({

@@ -1,4 +1,4 @@
-import { Icon, Typography } from "@mui/material";
+import { Icon } from "@mui/material";
 import { Box } from "@mui/material";
 import React from "react";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
@@ -12,6 +12,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useDispatch } from "react-redux";
 import { openSendMessage } from "../features/counter/mailSlice";
+import { NavLink } from "react-router-dom";
 
 const SmallSidebarBox = styled(Box)({
   display: "flex",
@@ -58,12 +59,46 @@ const SmallSideBar = () => {
       >
         <CreateOutlinedIcon />
       </ComposeIcon>
-
-      <SideBarIcon IconType={InboxOutlinedIcon} />
-      <SideBarIcon IconType={StarBorderOutlinedIcon} />
-      <SideBarIcon IconType={WatchLaterOutlinedIcon} />
-      <SideBarIcon IconType={SendOutlinedIcon} />
-      <SideBarIcon IconType={DescriptionOutlinedIcon} />
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "link active-icon-link" : "link"
+        }
+        to="/"
+      >
+        <SideBarIcon IconType={InboxOutlinedIcon} />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "link active-icon-link" : "link"
+        }
+        to="stared"
+      >
+        <SideBarIcon IconType={StarBorderOutlinedIcon} />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "link active-icon-link" : "link"
+        }
+        to="/snoozed"
+      >
+        <SideBarIcon IconType={WatchLaterOutlinedIcon} />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "link active-icon-link" : "link"
+        }
+        to="/sent"
+      >
+        <SideBarIcon IconType={SendOutlinedIcon} />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "link active-icon-link" : "link"
+        }
+        to="/drafts"
+      >
+        <SideBarIcon IconType={DescriptionOutlinedIcon} />
+      </NavLink>
       <SideBarIcon IconType={ExpandMoreOutlinedIcon} />
     </SmallSidebarBox>
   );

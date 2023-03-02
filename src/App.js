@@ -21,6 +21,10 @@ import { selectshowfullSidebar } from "./features/sidebarSlice";
 
 import ComposeModalscontainer from "./Components/ComposeModalscontainer";
 import { useSelector } from "react-redux";
+import Stared from "./pages/Stared";
+import Sent from "./pages/Sent";
+import Snoozed from "./pages/Snoozed";
+import Drafts from "./pages/Drafts";
 
 function App() {
   const [clickedMail, setClickedMail] = useState(null);
@@ -58,6 +62,10 @@ function App() {
                   <Route path="promotions" element={<Promotion />} />
                   <Route path="socials" element={<Socials />} />
                 </Route>
+                <Route path="stared" element={<Stared />} />
+                <Route path="Sent" element={<Sent />} />
+                <Route path="snoozed" element={<Snoozed />} />
+                <Route path="Drafts" element={<Drafts />} />
                 {clickedMail !== null ? (
                   <Route
                     path={`/${clickedMail.id}`}
