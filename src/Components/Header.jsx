@@ -1,7 +1,7 @@
 import React from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
-import { Avatar, Box, IconButton, InputBase } from "@mui/material";
+import { Avatar, Box, IconButton, InputBase, Tooltip } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
 import HelpIcon from "@mui/icons-material/Help";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -60,9 +60,11 @@ const Header = () => {
     <>
       <NavbarDiv sx={{ position: "relative", marginLeft: "10px" }}>
         <NavPart>
-          <IconButton onClick={() => dispatch(showfullSidebarAction())}>
-            <MenuIcon fontSize="large" />
-          </IconButton>
+          <Tooltip title="Main Menu">
+            <IconButton onClick={() => dispatch(showfullSidebarAction())}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+          </Tooltip>
           <img
             src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"
             alt="logo"
@@ -82,6 +84,7 @@ const Header = () => {
           >
             <TuneIcon />
           </IconButton>
+
           <SearchInput fullWidth placeholder="Search mail" />
         </NavbarCenter>
 
@@ -89,15 +92,21 @@ const Header = () => {
           sx={{ display: "flex", flexGrow: 1, justifyContent: "flex-end" }}
           className="header-right"
         >
-          <IconButton>
-            <HelpIcon />
-          </IconButton>
-          <IconButton>
-            <SettingsIcon />
-          </IconButton>
-          <IconButton className="search-mail-icon">
-            <AppsRoundedIcon />
-          </IconButton>
+          <Tooltip title="Support">
+            <IconButton>
+              <HelpIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Settings">
+            <IconButton>
+              <SettingsIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Google Apps">
+            <IconButton className="search-mail-icon">
+              <AppsRoundedIcon />
+            </IconButton>
+          </Tooltip>
           <IconButton
             className="search-mail-icon"
             onClick={() => dispatch(showlogout())}

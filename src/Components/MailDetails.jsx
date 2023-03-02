@@ -38,45 +38,56 @@ const MailDetails = ({ clickedMail }) => {
         <Stack direction={"row"} gap={2}>
           <Tooltip title="Back to Inbox">
             <IconButton onClick={() => NavigateBack(-1)}>
-              <KeyboardBackspaceIcon fontSize="small" />
+              <KeyboardBackspaceIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Archive">
+            <IconButton>
+              <ArchiveOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Report">
+            <IconButton>
+              <ReportGmailerrorredOutlinedIcon />
             </IconButton>
           </Tooltip>
 
-          <IconButton>
-            <ArchiveOutlinedIcon fontSize="small" />
-          </IconButton>
+          <Tooltip title="Mark as read">
+            <IconButton>
+              <MarkunreadOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Snoozed">
+            <IconButton>
+              <AccessTimeOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Add to task">
+            <IconButton>
+              <AddTaskOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Move">
+            <IconButton>
+              <DriveFileMoveOutlinedIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <IconButton>
+              <DeleteForeverIcon />
+            </IconButton>
+          </Tooltip>
 
-          <IconButton>
-            <ReportGmailerrorredOutlinedIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <MarkunreadOutlinedIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <AccessTimeOutlinedIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <AddTaskOutlinedIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <DriveFileMoveOutlinedIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <DeleteForeverIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <LabelOutlinedIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton>
-            <MoreVertOutlinedIcon fontSize="small" />
-          </IconButton>
+          <Tooltip title="Labels">
+            <IconButton>
+              <LabelOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="More">
+            <IconButton>
+              <MoreVertOutlinedIcon />
+            </IconButton>
+          </Tooltip>
         </Stack>
         <Stack direction={"row"}>
           <Button variant="text" sx={{ color: "#818181" }}>
@@ -101,12 +112,16 @@ const MailDetails = ({ clickedMail }) => {
             {clickedMail.data.Subject}
           </Typography>
           <Stack direction="raw" gap="20px">
-            <IconButton>
-              <LocalPrintshopOutlinedIcon />
-            </IconButton>
-            <IconButton>
-              <LaunchOutlinedIcon />
-            </IconButton>
+            <Tooltip title="Print">
+              <IconButton onClick={() => window.print()}>
+                <LocalPrintshopOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="In New tab">
+              <IconButton>
+                <LaunchOutlinedIcon />
+              </IconButton>
+            </Tooltip>
           </Stack>
         </Stack>
       </Box>

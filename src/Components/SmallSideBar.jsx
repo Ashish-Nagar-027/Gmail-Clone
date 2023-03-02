@@ -1,4 +1,4 @@
-import { Icon } from "@mui/material";
+import { Icon, Tooltip } from "@mui/material";
 import { Box } from "@mui/material";
 import React from "react";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
@@ -59,46 +59,58 @@ const SmallSideBar = () => {
       >
         <CreateOutlinedIcon />
       </ComposeIcon>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "link active-icon-link" : "link"
-        }
-        to="/"
-      >
-        <SideBarIcon IconType={InboxOutlinedIcon} />
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "link active-icon-link" : "link"
-        }
-        to="stared"
-      >
-        <SideBarIcon IconType={StarBorderOutlinedIcon} />
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "link active-icon-link" : "link"
-        }
-        to="/snoozed"
-      >
-        <SideBarIcon IconType={WatchLaterOutlinedIcon} />
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "link active-icon-link" : "link"
-        }
-        to="/sent"
-      >
-        <SideBarIcon IconType={SendOutlinedIcon} />
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "link active-icon-link" : "link"
-        }
-        to="/drafts"
-      >
-        <SideBarIcon IconType={DescriptionOutlinedIcon} />
-      </NavLink>
+
+      <Tooltip title="Inbox" placement={"right"}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link active-icon-link" : "link"
+          }
+          to="/"
+        >
+          <SideBarIcon IconType={InboxOutlinedIcon} />
+        </NavLink>
+      </Tooltip>
+
+      <Tooltip title="starred" placement={"right"}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link active-icon-link" : "link"
+          }
+          to="stared"
+        >
+          <SideBarIcon IconType={StarBorderOutlinedIcon} />
+        </NavLink>
+      </Tooltip>
+      <Tooltip title="Snoozed" placement={"right"}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link active-icon-link" : "link"
+          }
+          to="/snoozed"
+        >
+          <SideBarIcon IconType={WatchLaterOutlinedIcon} />
+        </NavLink>
+      </Tooltip>
+      <Tooltip title="Sent" placement={"right"}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link active-icon-link" : "link"
+          }
+          to="/sent"
+        >
+          <SideBarIcon IconType={SendOutlinedIcon} />
+        </NavLink>
+      </Tooltip>
+      <Tooltip title="Drafts" placement={"right"}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "link active-icon-link" : "link"
+          }
+          to="/drafts"
+        >
+          <SideBarIcon IconType={DescriptionOutlinedIcon} />
+        </NavLink>
+      </Tooltip>
       <SideBarIcon IconType={ExpandMoreOutlinedIcon} />
     </SmallSidebarBox>
   );

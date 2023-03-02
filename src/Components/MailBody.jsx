@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
@@ -40,12 +40,16 @@ const MailBody = ({ mail, setClickedMail }) => {
           },
         }}
       >
-        <IconButton sx={{ transform: "scale(0.8)" }}>
-          <CheckBoxOutlineBlankIcon />
-        </IconButton>
-        <IconButton sx={{ transform: "scale(0.8)" }}>
-          <StarBorderOutlinedIcon />
-        </IconButton>
+        <Tooltip title="Select">
+          <IconButton sx={{ transform: "scale(0.8)" }}>
+            <CheckBoxOutlineBlankIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Not Starred">
+          <IconButton sx={{ transform: "scale(0.8)" }}>
+            <StarBorderOutlinedIcon />
+          </IconButton>
+        </Tooltip>
         <Typography
           sx={{
             whiteSpace: "nowrap",
