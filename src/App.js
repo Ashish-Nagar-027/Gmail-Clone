@@ -1,5 +1,5 @@
 import { Stack } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import AllEmailList from "./Components/AllEmailList";
 
@@ -14,22 +14,41 @@ import Promotion from "./pages/Promotion";
 import Socials from "./pages/Socials";
 import InboxPage from "./pages/InboxPage";
 
-import { selectUser } from "./features/counter/userSlice";
+import { selectUser, signin, signout } from "./features/counter/userSlice";
 import LogOutProfileDetails from "./pages/authentication/LogOutProfileDetails";
 import SmallSideBar from "./Components/SmallSideBar";
 import { selectshowfullSidebar } from "./features/sidebarSlice";
 
 import ComposeModalscontainer from "./Components/ComposeModalscontainer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Stared from "./pages/Stared";
 import Sent from "./pages/Sent";
 import Snoozed from "./pages/Snoozed";
 import Drafts from "./pages/Drafts";
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 function App() {
   const [clickedMail, setClickedMail] = useState(null);
-
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          signin({
+            displayName: user.displayName,
+            mail: user.email,
+            photoUrl: user.photoURL,
+          })
+        );
+      } else {
+        dispatch(signout());
+      }
+    });
+  }, []);
 
   const showFullSidebar = useSelector(selectshowfullSidebar);
 

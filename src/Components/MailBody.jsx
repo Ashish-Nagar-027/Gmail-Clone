@@ -3,6 +3,9 @@ import React from "react";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { useNavigate } from "react-router-dom";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../Firebase";
+import StarIcon from "@mui/icons-material/Star";
 
 const MailBody = ({ mail, setClickedMail }) => {
   const NavigateToMail = useNavigate();
@@ -10,6 +13,16 @@ const MailBody = ({ mail, setClickedMail }) => {
   function mailClickHandle(mail) {
     setClickedMail(mail);
     NavigateToMail(mail.id);
+  }
+
+  async function addStarred(event, mail) {
+    event.stopPropagation();
+    const mailId = mail.id;
+
+    const updateStar = doc(db, "data", mailId);
+    await updateDoc(updateStar, {
+      isStarred: !mail.data.isStarred,
+    });
   }
 
   return (
@@ -46,8 +59,11 @@ const MailBody = ({ mail, setClickedMail }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Not Starred">
-          <IconButton sx={{ transform: "scale(0.8)" }}>
-            <StarBorderOutlinedIcon />
+          <IconButton
+            sx={{ transform: "scale(0.8)" }}
+            onClick={(event) => addStarred(event, mail)}
+          >
+            {mail.data.isStarred ? <StarIcon /> : <StarBorderOutlinedIcon />}
           </IconButton>
         </Tooltip>
         <Typography
