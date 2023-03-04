@@ -6,13 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import StarIcon from "@mui/icons-material/Star";
+import { clickedMailData } from "../features/clickedMailSlice";
+import { useDispatch } from "react-redux";
 
 const MailBody = ({ mail, setClickedMail }) => {
+  const dispatch = useDispatch();
   const NavigateToMail = useNavigate();
 
   function mailClickHandle(mail) {
-    setClickedMail(mail);
-    NavigateToMail(mail.id);
+    dispatch(clickedMailData(mail));
+
+    // setClickedMail(mail)
+    NavigateToMail(`/${mail.id}`);
   }
 
   async function addStarred(event, mail) {

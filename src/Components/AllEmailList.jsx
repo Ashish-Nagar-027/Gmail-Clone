@@ -7,7 +7,7 @@ import { db } from "../Firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { allMailsAction, selectAllMails } from "../features/allMailSlice";
 
-const AllEmailList = ({ setClickedMail, clickedMail }) => {
+const AllEmailList = () => {
   const [fetching, setFetching] = useState(true);
 
   const dispatch = useDispatch();
@@ -34,14 +34,7 @@ const AllEmailList = ({ setClickedMail, clickedMail }) => {
       {fetching ? (
         <h2 style={{ padding: "1rem" }}>loading . . .</h2>
       ) : (
-        allMailsdata.map((mail) => (
-          <MailBody
-            mail={mail}
-            key={mail.id}
-            setClickedMail={setClickedMail}
-            clickedMail={clickedMail}
-          />
-        ))
+        allMailsdata.map((mail) => <MailBody mail={mail} key={mail.id} />)
       )}
     </Box>
   );

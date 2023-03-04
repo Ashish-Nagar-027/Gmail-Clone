@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const clickedMailSlice = createSlice({
-  name: "clickedMail",
+  name: "clickedmail",
   initialState: {
     value: null,
   },
@@ -11,15 +11,14 @@ export const clickedMailSlice = createSlice({
       state.value = action.payload;
     },
 
-    emptyClickedMailData: (state) => {
+    emptyClickedMail: (state) => {
       state.value = null;
     },
   },
 });
 
-export const { clickedMailData, emptyClickedMailData } =
-  clickedMailSlice.actions;
+export const { clickedMailData, emptyClickedMail } = clickedMailSlice.actions;
 
-export const selectclickedMail = (state) => state.clickedMail.value;
+export const selectclickedMail = (state) => state.clickedmail.value;
 
 export default clickedMailSlice.reducer;

@@ -10,9 +10,10 @@ import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openSendMessage } from "../features/counter/mailSlice";
 import { NavLink } from "react-router-dom";
+import { selectAllMails } from "../features/allMailSlice";
 
 const SidebarBox = styled(Box)({
   padding: "1rem 2rem 1rem 0rem",
@@ -56,6 +57,10 @@ const ComposeIcon = styled(Icon)({
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const allMailsdata = useSelector(selectAllMails);
+  const numberOfMails = allMailsdata?.length || 0;
+  const numberOfStaredMails =
+    allMailsdata?.filter((mail) => mail.data.isStarred).length || 0;
 
   return (
     <SidebarBox>
@@ -78,7 +83,7 @@ const Sidebar = () => {
         <SideBarIcon
           IconType={InboxOutlinedIcon}
           IconName={"Inbox"}
-          InsideNumber={"30"}
+          InsideNumber={numberOfMails}
         />
       </NavLink>
       <NavLink
@@ -88,7 +93,7 @@ const Sidebar = () => {
         <SideBarIcon
           IconType={StarBorderOutlinedIcon}
           IconName={"Starred"}
-          InsideNumber={"10"}
+          InsideNumber={numberOfStaredMails}
         />
       </NavLink>
 

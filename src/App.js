@@ -27,12 +27,13 @@ import Snoozed from "./pages/Snoozed";
 import Drafts from "./pages/Drafts";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import clickedMail, { selectclickedMail } from "./features/clickedMailSlice";
 
 function App() {
-  const [clickedMail, setClickedMail] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const auth = getAuth();
+  const clickedMail = useSelector(selectclickedMail);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -69,15 +70,7 @@ function App() {
             <Stack direction={"column"} sx={{}}>
               <Routes>
                 <Route path="/" element={<InboxPage />}>
-                  <Route
-                    index
-                    element={
-                      <AllEmailList
-                        clickedMail={clickedMail}
-                        setClickedMail={setClickedMail}
-                      />
-                    }
-                  />
+                  <Route index element={<AllEmailList />} />
                   <Route path="promotions" element={<Promotion />} />
                   <Route path="socials" element={<Socials />} />
                 </Route>

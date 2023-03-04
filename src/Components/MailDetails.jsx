@@ -21,7 +21,12 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 
 import { useNavigate } from "react-router-dom";
 
-const MailDetails = ({ clickedMail }) => {
+import { useSelector } from "react-redux";
+import { selectclickedMail } from "../features/clickedMailSlice";
+
+const MailDetails = ({}) => {
+  const clickedMail = useSelector(selectclickedMail);
+
   const NavigateBack = useNavigate();
 
   return (
@@ -35,7 +40,7 @@ const MailDetails = ({ clickedMail }) => {
           padding: "5px 10px",
         }}
       >
-        <Stack direction={"row"} gap={2}>
+        <Stack direction={"row"} sx={{ gap: "1rem" }}>
           <Tooltip title="Back to Inbox">
             <IconButton onClick={() => NavigateBack(-1)}>
               <KeyboardBackspaceIcon />
