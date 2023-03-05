@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { selectclickedMail } from "../features/clickedMailSlice";
+import Star from "./Star";
 
 const MailDetails = ({}) => {
   const clickedMail = useSelector(selectclickedMail);
@@ -163,7 +164,7 @@ const MailDetails = ({}) => {
               display: "flex",
               gap: "10px",
               padding: "8px 15px",
-              alignItems: "flex-start",
+              alignItems: "center",
             }}
           >
             <span>
@@ -177,7 +178,7 @@ const MailDetails = ({}) => {
               ).toLocaleTimeString()}
             </span>
 
-            <StarBorderOutlinedIcon cursor="pointer" />
+            <Star mail={clickedMail} />
 
             <MoreVertOutlinedIcon cursor="pointer" />
           </Typography>

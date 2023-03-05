@@ -8,26 +8,15 @@ import { db } from "../Firebase";
 import StarIcon from "@mui/icons-material/Star";
 import { clickedMailData } from "../features/clickedMailSlice";
 import { useDispatch } from "react-redux";
+import Star from "./Star";
 
-const MailBody = ({ mail, setClickedMail }) => {
+const MailBody = ({ mail }) => {
   const dispatch = useDispatch();
   const NavigateToMail = useNavigate();
 
   function mailClickHandle(mail) {
     dispatch(clickedMailData(mail));
-
-    // setClickedMail(mail)
     NavigateToMail(`/${mail.id}`);
-  }
-
-  async function addStarred(event, mail) {
-    event.stopPropagation();
-    const mailId = mail.id;
-
-    const updateStar = doc(db, "data", mailId);
-    await updateDoc(updateStar, {
-      isStarred: !mail.data.isStarred,
-    });
   }
 
   return (
@@ -64,12 +53,7 @@ const MailBody = ({ mail, setClickedMail }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Not Starred">
-          <IconButton
-            sx={{ transform: "scale(0.8)" }}
-            onClick={(event) => addStarred(event, mail)}
-          >
-            {mail.data.isStarred ? <StarIcon /> : <StarBorderOutlinedIcon />}
-          </IconButton>
+          <Star mail={mail} />
         </Tooltip>
         <Typography
           sx={{
