@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import { db } from "../Firebase";
@@ -8,7 +8,8 @@ import { IconButton } from "@mui/material";
 const Star = ({ mail }) => {
   async function addStarred(event, mail) {
     event.stopPropagation();
-    setRenderState(!mail.data.isStarred);
+
+    setRenderState(!renderState);
     const mailId = mail.id;
     const updateStar = doc(db, "data", mailId);
     await updateDoc(updateStar, {
@@ -16,7 +17,7 @@ const Star = ({ mail }) => {
     });
   }
 
-  const [renderState, setRenderState] = useState(mail.data.isStarred);
+  const [renderState, setRenderState] = useState(!mail.data.isStarred);
 
   return (
     <IconButton

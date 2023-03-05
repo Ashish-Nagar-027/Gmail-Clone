@@ -53,7 +53,9 @@ const MailBody = ({ mail }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Not Starred">
-          <Star mail={mail} />
+          <>
+            <Star mail={mail} />
+          </>
         </Tooltip>
         <Typography
           sx={{

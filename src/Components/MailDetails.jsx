@@ -6,7 +6,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import ReportGmailerrorredOutlinedIcon from "@mui/icons-material/ReportGmailerrorredOutlined";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import MarkunreadOutlinedIcon from "@mui/icons-material/MarkunreadOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectclickedMail } from "../features/clickedMailSlice";
 import Star from "./Star";
+import DeleteMails from "./DeleteMails";
 
 const MailDetails = ({}) => {
   const clickedMail = useSelector(selectclickedMail);
@@ -41,47 +42,62 @@ const MailDetails = ({}) => {
           padding: "5px 10px",
         }}
       >
-        <Stack direction={"row"} sx={{ gap: "1rem" }}>
+        <Box sx={{ display: "flex", flexDirection: "raw", gap: "1rem" }}>
           <Tooltip title="Back to Inbox">
-            <IconButton onClick={() => NavigateBack(-1)}>
-              <KeyboardBackspaceIcon />
-            </IconButton>
+            <>
+              <IconButton onClick={() => NavigateBack(-1)}>
+                <KeyboardBackspaceIcon />
+              </IconButton>
+            </>
           </Tooltip>
           <Tooltip title="Archive">
-            <IconButton>
-              <ArchiveOutlinedIcon />
-            </IconButton>
+            <>
+              <IconButton>
+                <ArchiveOutlinedIcon />
+              </IconButton>
+            </>
           </Tooltip>
+
           <Tooltip title="Report">
-            <IconButton>
-              <ReportGmailerrorredOutlinedIcon />
-            </IconButton>
+            <>
+              <IconButton>
+                <ReportGmailerrorredOutlinedIcon />
+              </IconButton>
+            </>
           </Tooltip>
 
           <Tooltip title="Mark as read">
-            <IconButton>
-              <MarkunreadOutlinedIcon />
-            </IconButton>
+            <>
+              <IconButton>
+                <MarkunreadOutlinedIcon />
+              </IconButton>
+            </>
           </Tooltip>
           <Tooltip title="Snoozed">
-            <IconButton>
-              <AccessTimeOutlinedIcon />
-            </IconButton>
+            <>
+              <IconButton>
+                <AccessTimeOutlinedIcon />
+              </IconButton>
+            </>
           </Tooltip>
           <Tooltip title="Add to task">
-            <IconButton>
-              <AddTaskOutlinedIcon />
-            </IconButton>
+            <>
+              <IconButton>
+                <AddTaskOutlinedIcon />
+              </IconButton>
+            </>
           </Tooltip>
           <Tooltip title="Move">
-            <IconButton>
-              <DriveFileMoveOutlinedIcon fontSize="small" />
-            </IconButton>
+            <>
+              <IconButton>
+                <DriveFileMoveOutlinedIcon fontSize="small" />
+              </IconButton>
+            </>
           </Tooltip>
           <Tooltip title="Delete">
-            <IconButton>
-              <DeleteForeverIcon />
-            </IconButton>
+            <>
+              <DeleteMails mail={clickedMail} />
+            </>
           </Tooltip>
 
           <Tooltip title="Labels">
@@ -94,8 +110,8 @@ const MailDetails = ({}) => {
               <MoreVertOutlinedIcon />
             </IconButton>
           </Tooltip>
-        </Stack>
-        <Stack direction={"row"}>
+        </Box>
+        <Box sx={{ display: "flex" }}>
           <Button variant="text" sx={{ color: "#818181" }}>
             1-50 of 2444
           </Button>
@@ -105,19 +121,21 @@ const MailDetails = ({}) => {
           <IconButton>
             <ArrowRightIcon />
           </IconButton>
-        </Stack>
+        </Box>
       </Box>
 
       <Box>
-        <Stack
-          direction="raw"
-          justifyContent={"space-between"}
-          sx={{ padding: "20px 20px 20px 70px" }}
+        <Box
+          sx={{
+            padding: "20px 20px 20px 70px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
           <Typography component={"h1"} variant="h4">
             {clickedMail.data.Subject}
           </Typography>
-          <Stack direction="raw" gap="20px">
+          <Box sx={{ display: "flex", gap: "20px" }}>
             <Tooltip title="Print">
               <IconButton onClick={() => window.print()}>
                 <LocalPrintshopOutlinedIcon />
@@ -128,8 +146,8 @@ const MailDetails = ({}) => {
                 <LaunchOutlinedIcon />
               </IconButton>
             </Tooltip>
-          </Stack>
-        </Stack>
+          </Box>
+        </Box>
       </Box>
 
       <Box
