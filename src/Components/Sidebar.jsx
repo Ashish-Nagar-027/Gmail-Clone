@@ -104,7 +104,7 @@ const Sidebar = () => {
         <SideBarIcon
           IconType={WatchLaterOutlinedIcon}
           IconName={"Snoozed"}
-          InsideNumber={"30"}
+          InsideNumber={0}
         />
       </NavLink>
 
@@ -115,7 +115,7 @@ const Sidebar = () => {
         <SideBarIcon
           IconType={SendOutlinedIcon}
           IconName={"Sent"}
-          InsideNumber={"30"}
+          InsideNumber={numberOfMails}
         />
       </NavLink>
       <NavLink
@@ -125,7 +125,7 @@ const Sidebar = () => {
         <SideBarIcon
           IconType={DescriptionOutlinedIcon}
           IconName={"Drafts"}
-          InsideNumber={"30"}
+          InsideNumber={0}
         />
       </NavLink>
       <SideBarIcon IconType={ExpandMoreOutlinedIcon} IconName={"More"} />
