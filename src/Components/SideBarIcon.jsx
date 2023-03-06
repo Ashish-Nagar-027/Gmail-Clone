@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
 import { Icon, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/material";
+
 import React from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
 import { selectshowfullSidebar } from "../features/sidebarSlice";
 
 const SidebarItems = styled(Box)({
@@ -19,8 +22,15 @@ const IconDiv = styled(Icon)({
   justifyContent: "center",
 });
 
-const SideBarIcon = ({ IconType, IconName, InsideNumber }) => {
+const SideBarIcon = ({
+  IconType,
+  IconName,
+  InsideNumber,
+  currentPath,
+  FilledIcon,
+}) => {
   const showFullSidebar = useSelector(selectshowfullSidebar);
+  const navigation = useLocation();
 
   return (
     <SidebarItems
@@ -42,7 +52,11 @@ const SideBarIcon = ({ IconType, IconName, InsideNumber }) => {
         }}
       >
         <IconButton>
-          {<IconType sx={{ color: "#444746", transform: "scale(0.8)" }} />}
+          {currentPath === navigation.pathname ? (
+            <FilledIcon sx={{ color: "#001d35", transform: "scale(0.8)" }} />
+          ) : (
+            <IconType sx={{ color: "#444746", transform: "scale(0.8)" }} />
+          )}
         </IconButton>
         <Box
           sx={{

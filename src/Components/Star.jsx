@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import { db } from "../Firebase";
@@ -17,13 +17,12 @@ const Star = ({ mail }) => {
     });
   }
 
-  const [renderState, setRenderState] = useState(!mail.data.isStarred);
+  const [renderState, setRenderState] = useState(mail.data.isStarred);
 
   return (
     <IconButton
       sx={{ transform: "scale(0.8)" }}
       onClick={(event) => addStarred(event, mail)}
-      color={"yellow"}
     >
       {renderState ? (
         <StarIcon style={{ color: "#F4B400" }} />

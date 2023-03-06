@@ -18,14 +18,13 @@ const AllEmailList = () => {
     const q = query(collection(db, "data"), orderBy("timestamp", "desc"));
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
       setFetching(true);
-      const setdata = querySnapshot.docs.map((doc) => ({
+      const getdata = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
-        isStarred: false,
       }));
 
       setFetching(false);
-      dispatch(allMailsAction(setdata));
+      dispatch(allMailsAction(getdata));
     });
   }, []);
 

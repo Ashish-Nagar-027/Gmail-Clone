@@ -6,7 +6,6 @@ import { selectAllMails } from "../features/allMailSlice";
 import "./InboxPage";
 import TopBarTools from "../Components/TopBarTools";
 const Stared = () => {
-  const [fetching, setFetching] = useState(true);
   const allMailsdata = useSelector(selectAllMails);
 
   const maildata = allMailsdata?.filter((mail) => mail.data.isStarred);

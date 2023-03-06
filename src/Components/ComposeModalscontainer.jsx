@@ -28,6 +28,7 @@ const ComposeModalscontainer = () => {
           Recipents: formValues.Recipients,
           Subject: formValues.Subject,
           Message: formValues.Message,
+          isStarred: false,
           timestamp: serverTimestamp(),
         });
 

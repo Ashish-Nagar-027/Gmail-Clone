@@ -14,6 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { openSendMessage } from "../features/counter/mailSlice";
 import { NavLink } from "react-router-dom";
 import { selectAllMails } from "../features/allMailSlice";
+import InboxIcon from "@mui/icons-material/Inbox";
+import StarIcon from "@mui/icons-material/Star";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import SendIcon from "@mui/icons-material/Send";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 const SidebarBox = styled(Box)({
   padding: "1rem 2rem 1rem 0rem",
@@ -84,6 +89,8 @@ const Sidebar = () => {
           IconType={InboxOutlinedIcon}
           IconName={"Inbox"}
           InsideNumber={numberOfMails}
+          currentPath={"/"}
+          FilledIcon={InboxIcon}
         />
       </NavLink>
       <NavLink
@@ -94,6 +101,8 @@ const Sidebar = () => {
           IconType={StarBorderOutlinedIcon}
           IconName={"Starred"}
           InsideNumber={numberOfStaredMails}
+          currentPath={"/stared"}
+          FilledIcon={StarIcon}
         />
       </NavLink>
 
@@ -105,6 +114,8 @@ const Sidebar = () => {
           IconType={WatchLaterOutlinedIcon}
           IconName={"Snoozed"}
           InsideNumber={0}
+          currentPath={"/snoozed"}
+          FilledIcon={WatchLaterIcon}
         />
       </NavLink>
 
@@ -116,6 +127,8 @@ const Sidebar = () => {
           IconType={SendOutlinedIcon}
           IconName={"Sent"}
           InsideNumber={numberOfMails}
+          currentPath={"/sent"}
+          FilledIcon={SendIcon}
         />
       </NavLink>
       <NavLink
@@ -126,6 +139,8 @@ const Sidebar = () => {
           IconType={DescriptionOutlinedIcon}
           IconName={"Drafts"}
           InsideNumber={0}
+          currentPath={"/drafts"}
+          FilledIcon={DescriptionIcon}
         />
       </NavLink>
       <SideBarIcon IconType={ExpandMoreOutlinedIcon} IconName={"More"} />

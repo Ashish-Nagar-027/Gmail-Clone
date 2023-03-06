@@ -1,11 +1,9 @@
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import React from "react";
-import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
+
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { useNavigate } from "react-router-dom";
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../Firebase";
-import StarIcon from "@mui/icons-material/Star";
+
 import { clickedMailData } from "../features/clickedMailSlice";
 import { useDispatch } from "react-redux";
 import Star from "./Star";
