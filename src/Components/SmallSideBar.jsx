@@ -13,6 +13,11 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useDispatch } from "react-redux";
 import { openSendMessage } from "../features/counter/mailSlice";
 import { NavLink } from "react-router-dom";
+import InboxIcon from "@mui/icons-material/Inbox";
+import StarIcon from "@mui/icons-material/Star";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import SendIcon from "@mui/icons-material/Send";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 const SmallSidebarBox = styled(Box)({
   display: "flex",
@@ -59,17 +64,20 @@ const SmallSideBar = () => {
       >
         <CreateOutlinedIcon />
       </ComposeIcon>
-
-      <Tooltip title="Inbox" placement={"right"}>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "link active-icon-link" : "link"
-          }
-          to="/"
-        >
-          <SideBarIcon IconType={InboxOutlinedIcon} />
-        </NavLink>
-      </Tooltip>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "link active-icon-link" : "link"
+        }
+        to="/"
+      >
+        <Tooltip title="Inbox" placement={"right"}>
+          <SideBarIcon
+            IconType={InboxOutlinedIcon}
+            currentPath={"/"}
+            FilledIcon={InboxIcon}
+          />
+        </Tooltip>
+      </NavLink>
 
       <Tooltip title="starred" placement={"right"}>
         <NavLink
@@ -78,7 +86,11 @@ const SmallSideBar = () => {
           }
           to="stared"
         >
-          <SideBarIcon IconType={StarBorderOutlinedIcon} />
+          <SideBarIcon
+            IconType={StarBorderOutlinedIcon}
+            currentPath={"/stared"}
+            FilledIcon={StarIcon}
+          />
         </NavLink>
       </Tooltip>
       <Tooltip title="Snoozed" placement={"right"}>
@@ -88,7 +100,11 @@ const SmallSideBar = () => {
           }
           to="/snoozed"
         >
-          <SideBarIcon IconType={WatchLaterOutlinedIcon} />
+          <SideBarIcon
+            IconType={WatchLaterOutlinedIcon}
+            currentPath={"/snoozed"}
+            FilledIcon={WatchLaterIcon}
+          />
         </NavLink>
       </Tooltip>
       <Tooltip title="Sent" placement={"right"}>
@@ -98,7 +114,11 @@ const SmallSideBar = () => {
           }
           to="/sent"
         >
-          <SideBarIcon IconType={SendOutlinedIcon} />
+          <SideBarIcon
+            IconType={SendOutlinedIcon}
+            currentPath={"/sent"}
+            FilledIcon={SendIcon}
+          />
         </NavLink>
       </Tooltip>
       <Tooltip title="Drafts" placement={"right"}>
@@ -108,7 +128,11 @@ const SmallSideBar = () => {
           }
           to="/drafts"
         >
-          <SideBarIcon IconType={DescriptionOutlinedIcon} />
+          <SideBarIcon
+            IconType={DescriptionOutlinedIcon}
+            currentPath={"/drafts"}
+            FilledIcon={DescriptionIcon}
+          />
         </NavLink>
       </Tooltip>
       <SideBarIcon IconType={ExpandMoreOutlinedIcon} />

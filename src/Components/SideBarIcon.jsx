@@ -45,7 +45,7 @@ const SideBarIcon = ({
         className="ShowNow"
         style={{
           padding: showFullSidebar ? "5px 10px 5px 25px" : "5px",
-          margin: showFullSidebar ? "" : "5px 10px 5px 25px",
+          margin: showFullSidebar ? "" : "0px 10px 0px 25px",
           "&:hover": {
             backgroundColor: showFullSidebar ? "#EAEBEF" : "",
           },

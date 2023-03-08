@@ -16,7 +16,8 @@ const TopBarTools = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "calc(100vw - 300px)",
+        // width: "calc(100vw - 300px)",
+        width: "100%",
       }}
     >
       <Stack direction={"row"}>

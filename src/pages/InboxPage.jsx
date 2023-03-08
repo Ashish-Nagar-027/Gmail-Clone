@@ -5,11 +5,11 @@ import TopBarTools from "../Components/TopBarTools";
 
 const InboxPage = () => {
   return (
-    <>
+    <div style={{ minWidth: "100%" }}>
       <TopBarTools />
       <SectionBar />
       <Outlet />
-    </>
+    </div>
   );
 };
 
