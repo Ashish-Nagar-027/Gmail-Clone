@@ -1,10 +1,11 @@
 import { Icon, Typography } from "@mui/material";
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import InboxOutlinedIcon from "@mui/icons-material/InboxOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import styled from "@emotion/styled";
 import SideBarIcon from "./SideBarIcon";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
@@ -19,6 +20,9 @@ import StarIcon from "@mui/icons-material/Star";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import SendIcon from "@mui/icons-material/Send";
 import DescriptionIcon from "@mui/icons-material/Description";
+import LabelImportantOutlinedIcon from "@mui/icons-material/LabelImportantOutlined";
+import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 const SidebarBox = styled(Box)({
   padding: "1rem 2rem 1rem 0rem",
@@ -66,6 +70,7 @@ const Sidebar = () => {
   const numberOfMails = allMailsdata?.length || 0;
   const numberOfStaredMails =
     allMailsdata?.filter((mail) => mail.data.isStarred).length || 0;
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <SidebarBox>
@@ -143,7 +148,23 @@ const Sidebar = () => {
           FilledIcon={DescriptionIcon}
         />
       </NavLink>
-      <SideBarIcon IconType={ExpandMoreOutlinedIcon} IconName={"More"} />
+      <Box onClick={() => setShowMore(!showMore)}>
+        {showMore ? (
+          <SideBarIcon IconType={ExpandLessIcon} IconName={"Less"} />
+        ) : (
+          <SideBarIcon IconType={ExpandMoreOutlinedIcon} IconName={"More"} />
+        )}
+        {showMore && (
+          <Box>
+            <SideBarIcon
+              IconType={LabelImportantOutlinedIcon}
+              IconName={"Important"}
+            />
+            <SideBarIcon IconType={ChatOutlinedIcon} IconName={"Chats"} />
+            <SideBarIcon IconType={EmailOutlinedIcon} IconName={"All mails"} />
+          </Box>
+        )}
+      </Box>
     </SidebarBox>
   );
 };
