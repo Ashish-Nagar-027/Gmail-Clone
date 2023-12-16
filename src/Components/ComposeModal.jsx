@@ -167,7 +167,7 @@ const ComposeModal = ({
             variant="contained"
             sx={{
               borderRadius: "20px",
-              marginTop: "100px",
+              marginTop: "50px",
               marginLeft: "10px",
               display: "block",
             }}
